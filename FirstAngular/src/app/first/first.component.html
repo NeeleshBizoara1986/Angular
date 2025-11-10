@@ -1,0 +1,56 @@
+
+<h1>Hi First app</h1>
+
+<br />
+<hr />
+
+@if(isLoggedIn()){
+<div>Welcome, user!</div>
+}@else{
+<div>Please log in.</div>
+}
+
+<div>
+  @switch(role){ @case('admin'){
+  <div>Admin panel</div>
+  } @case('user') {
+  <div>User dashboard</div>
+  } @default{
+  <div>Default content</div>
+  } }
+</div>
+
+<button mat-button (click)="addCounter()">Counter {{ count() }}</button>
+{{ sum() }}
+
+<button mat-flat-button (click)="onObservable()">Observable</button>
+
+<button mat-flat-button (click)="onSubject()">Subject</button>
+<button mat-flat-button (click)="onReplaySubject()">Replay Subject</button>
+<button mat-flat-button (click)="onAsyncSubject()">Async Subject</button>
+
+<div class="container" *ngIf="post$ | async as posts; else loading">
+  <!-- <div *ngFor="let post of posts">
+    <h2>{{post.title}}</h2>
+    <p>{{post.body}}</p>
+  </div> -->
+  <mat-card
+    class="example-card"
+    appearance="outlined"
+    *ngFor="let post of posts"
+  >
+    <mat-card-header>
+      <mat-card-title>{{ post.title }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ post.body }}</p>
+    </mat-card-content>
+    <!-- <mat-card-actions align="end">
+      <button mat-button>Learn More</button>
+    </mat-card-actions> -->
+  </mat-card>
+</div>
+
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

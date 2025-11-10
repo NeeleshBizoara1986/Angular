@@ -1,0 +1,68 @@
+<ng-template #show>
+    <p style="font-size: 20px;">This is a ng-template</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="show">
+</ng-container>
+
+<hr />
+<ng-template #showMsg let-message="msg">
+    <p style="font-size: 20px; color: green;">{{message}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="showMsg; context: { msg: 'Hello from context!' }">
+</ng-container>
+
+
+<hr />
+
+<ng-template #showCalFun let-sum="cal">
+    <p style="font-size: 20px; color: blue;">SUM: {{sum}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="showCalFun; context: { cal: calc() }">
+</ng-container>
+
+
+<hr />
+
+<ng-template #showObjectLetrial let-object="detail">
+    <p style="font-size: 20px; color: blue;">I am reading {{object.name}} version {{object.version}}. Description:
+        {{object.description}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="showObjectLetrial; context: { detail: showDetails }">
+</ng-container>
+
+
+<hr />
+
+<ng-template #showObjectLetrialUsingimplicit let-object>
+    <p style="font-size: 20px; color: blue;">I am reading {{object.name}} version {{object.version}}. Description:
+        {{object.description}}</p>
+</ng-template>
+<ng-container *ngTemplateOutlet="showObjectLetrialUsingimplicit; context: { $implicit: showDetails }">
+</ng-container>
+
+<hr />
+<ng-template #empDetails let-employees>
+    <!-- <div *ngFor="let employee of employees; trackBy: trackByEmployee">
+        <p style="font-size: 20px; color: purple;">ID: {{employee.id}}, Employee Name: {{employee.name}}, Designation: {{employee.position}}</p>
+    </div> -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Employee Name</th>
+                <th>Designation</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (employee of employees; track employee.id) {
+            <tr>
+                <td>{{employee.id}}</td>
+                <td>{{employee.name}}</td>
+                <td>{{employee.position}}</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+
+</ng-template>
+<ng-content *ngTemplateOutlet="empDetails, context:{$implicit: employees}"></ng-content>

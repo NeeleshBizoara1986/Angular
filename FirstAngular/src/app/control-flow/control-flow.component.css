@@ -1,0 +1,67 @@
+/* control-flow.component.scss */
+.container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  section {
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    margin: 10px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .user-list {
+    margin-top: 20px;
+
+    .user-item {
+      display: flex;
+      gap: 20px;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  .empty-state {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+  }
+
+  .status {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+
+    &.active { background-color: #d4edda; }
+    &.inactive { background-color: #f8f9fa; }
+    &.pending { background-color: #fff3cd; }
+    &.unknown { background-color: #f8d7da; }
+  }
+
+  select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+}

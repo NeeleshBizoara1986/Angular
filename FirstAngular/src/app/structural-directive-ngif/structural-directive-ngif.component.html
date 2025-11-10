@@ -1,0 +1,43 @@
+<p>structural-directive-ngif works!</p>
+<input type="number" [(ngModel)]="num" (change)="isNumGraterThen10 = num > 10" />
+<div *ngIf="num > 0">{{num}} is grated then 0</div>
+<div *ngIf="num < 0">{{num}} is less then 0</div>
+<div *ngIf="num === 0">Number is 0</div>
+
+<div *ngIf="isNumGraterThen10; else numLessThen10">{{num}} is Crossed 10</div>
+<ng-template #numLessThen10>{{num}} is Less then 10</ng-template>
+
+
+
+<div class="container">
+    <button (click)="displayElement = !displayElement" class="toggle-btn">
+        Show
+    </button>
+
+    <div *ngIf="displayElement" class="content-box">
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Possimus
+            praesentium aperiam sed sit numquam expedita consequatur reprehenderit
+            ullam unde mollitia libero, cum odit aliquid impedit iusto id amet
+            deserunt repellat!
+        </p>
+    </div>
+</div>
+
+
+<div *ngFor="let value of fullStackDev; index as i ; trackBy: trackbyItemId">
+    <ul>
+        <li>{{i}} {{value.name}}</li>
+    </ul>
+</div>
+<button (click)="updateItem()">Update Item</button>
+
+<div [ngSwitch]="num">
+    <div *ngSwitchCase="1">Number is One</div>
+    <div *ngSwitchCase="2">Number is Two</div>
+    <div *ngSwitchCase="3">Number is Three</div>
+    <div *ngSwitchDefault>Number is Other then One, Two, Three</div>
+</div>
+
+<h1>control flow</h1>
+<app-control-flow></app-control-flow>

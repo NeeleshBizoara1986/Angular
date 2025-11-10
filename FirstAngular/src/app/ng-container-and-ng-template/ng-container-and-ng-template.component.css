@@ -1,0 +1,46 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.box {
+  background-color: #333;
+  padding: 35px;
+  height: 100px;
+  width: 250px;
+  position: fixed;
+  left: 51%;
+  top: 39%;
+  transform: translate(-50%, -50%);
+  border-radius: 3px;
+}
+h3 {
+  color: goldenrod;
+}
+.input-container {
+  position: relative;
+}
+.input-container label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  font-size: 16px;
+  color: #fff;
+  transition: all 0.5s ease-in-out;
+}
+.input-container input {
+  border: 0;
+  border-bottom: 1px solid #555;
+  background: transparent;
+  width: 100%;
+  padding: 8px 0 5px 0;
+  font-size: 16px;
+  color: #fff;
+}
+.input-container input:focus {
+  border: none;
+  outline: none;
+  border-bottom: 1px solid #3ce4e7;
+}
+.input-container input:focus ~ label {
+  top: -12px;
+  font-size: 12px;
+}

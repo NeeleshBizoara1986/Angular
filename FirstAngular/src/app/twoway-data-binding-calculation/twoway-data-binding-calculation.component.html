@@ -1,0 +1,11 @@
+<div class="cart-container">
+    <div class="form-group">
+        <label for="item1">Quantity:</label>
+        <input type="number" id="item1" [(ngModel)]="quantity" class="quantity-input" min="0"/>
+    </div>
+    <div class="price-info">
+        <p>Price per item: <span class="price">{{pricePerItem}}</span></p>
+        <label>Total Price: </label>
+        <input type="text" class="total-price-input" readonly [(ngModel)]="totalPrice"/>
+    </div>
+</div>

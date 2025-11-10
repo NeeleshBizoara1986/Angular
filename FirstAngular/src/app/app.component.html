@@ -1,0 +1,33 @@
+<h1>Angular Router App {{title}}</h1>
+<h2>Interpolation With Null: {{interpolationWithNull}} it's empty string</h2>
+<h2>Interpolation With Undefined: {{interpolationWIthUndefined}} it's empty string</h2>
+
+<p>{{a}} + {{b}} = {{sum}}</p>
+
+
+<nav>
+  <ul>
+    <li><a routerLink="/protfolioBuilder">Protfolio Builder</a></li>
+    <li><a routerLink="/templateOutlet">Ng Template Outlet</a></li>
+    <li><a routerLink="/templateAndContainer">Ng Template and Ng Container</a></li>
+    <li><a routerLink="/attributeDirective">Attribute Directive</a></li>
+    <li><a routerLink="/ageValidation">Age Validation Functionality</a></li>
+    <li><a routerLink="/structrualDirngIf">Structural Directive ngIf</a></li>
+    <li><a routerLink="/twowaybindingCalculation">Two Way Data Binding Calcutaler</a></li>
+    <li><a routerLink="/twowaybinding">Two Way Data Binding</a></li>
+    <li><a routerLink="/downupkeyCounter">Down Up Key Counter</a></li>
+    <li><a routerLink="/keyevent">Key Event Binding Example</a></li>
+    <li><a routerLink="/mouseevent">Mouse Event Binding Example</a></li>
+    <li><a routerLink="/counterexample">Counter Example</a></li>
+    <li><a routerLink="/eventbinding">Event Binding</a></li>
+    <li><a routerLink="/propertybinding">Property Binding</a></li>
+    <li><a routerLink="/first-component" routerLinkActive="active" ariaCurrentWhenActive="page">First Component</a></li>
+    <li><a routerLink="/second-component" routerLinkActive="active" ariaCurrentWhenActive="page">Second Component</a></li>
+    <li><a routerLink="/defer-demo">Defer Demo</a></li>
+    <li><a routerLink="/signals">Signals Demo</a></li>
+  </ul>
+</nav>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
+<!-- app.component.html -->
+<!-- <app-control-flow></app-control-flow> -->

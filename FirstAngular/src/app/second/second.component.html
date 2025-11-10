@@ -1,0 +1,9 @@
+<input type="text" id="search" placeholder="search...">
+<ul>
+    @for (user of items; track $index) {
+        <p>{{ user }}</p>
+      }
+</ul>
+
+<app-merge-map></app-merge-map>
+<app-concat-map></app-concat-map>

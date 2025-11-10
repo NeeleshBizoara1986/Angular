@@ -1,0 +1,67 @@
+<p>ng-container-and-ng-template works!</p>
+<h1>Normal Div</h1>
+<div>
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+    <p>Item 4</p>
+</div>
+<hr />
+<h1>Using ng-container</h1>
+<ng-container>
+    <p>Item A</p>
+    <p>Item B</p>
+    <p>Item C</p>
+    <p>Item D</p>
+</ng-container>
+<hr />
+<h1>Using div with NGfor</h1>
+<div *ngFor="let item of subjectList">
+    <div *ngIf="item.id">
+        <span>{{item.id}}</span> -
+        <span>{{item.course}}</span>
+    </div>
+</div>
+
+<h1>Using ng-container with NGfor</h1>
+<ng-container *ngFor="let item of subjectList">
+    <div *ngIf="item.id">
+        <span>{{item.id}}</span> -
+        <span>{{item.course}}</span>
+    </div>
+</ng-container>
+
+<!-- @for (item of newSubjectList; track item.id) {
+    <div>{{ item.id }} - {{ item.course }}</div>
+    } -->
+
+<hr />
+<ng-container *ngIf="newSubjectList.length > 0; else noItemsTemplate">
+    <h2>List of Subjects</h2>
+    <ng-container *ngFor="let item of subjectList">
+        <div *ngIf="item.id">
+            <span>{{item.id}}</span> -
+            <span>{{item.course}}</span>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #noItemsTemplate>
+    <h2>No Subjects Available</h2>
+</ng-template>
+
+<!-- </div> -->
+
+<hr />
+
+
+<div class="box">
+  <div class="input-container">
+    <input type="text" [(ngModel)]="user" />
+    <label for="">Full Name</label>
+  </div>
+  <ng-container *ngIf="user !== ''; else notValid"></ng-container>
+  <ng-template #notValid>
+    <h3>Please enter your name</h3>
+  </ng-template>
+</div>

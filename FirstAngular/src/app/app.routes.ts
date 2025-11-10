@@ -1,0 +1,41 @@
+import { Routes } from '@angular/router';
+import { FirstComponent } from './first/first.component';
+import { SecondComponent } from './second/second.component';
+import { DeferredLoadingComponent } from './deferred-loading/deferred-loading.component';
+import { SignalTodoComponent } from './signal-todo/signal-todo.component';
+import { PropertyBindingComponent } from './property-binding/property-binding.component';
+import { EventBindingComponent } from './event-binding/event-binding.component';
+import { CounterExampleComponent } from './counter-example/counter-example.component';
+import { BindMouseEventComponent } from './bind-mouse-event/bind-mouse-event.component';
+import { KeyEventsComponent } from './key-events/key-events.component';
+import { DownUpKeyCounterComponent } from './down-up-key-counter/down-up-key-counter.component';
+import { TwowayDataBindingComponent } from './twoway-data-binding/twoway-data-binding.component';
+import { TwowayDataBindingCalculationComponent } from './twoway-data-binding-calculation/twoway-data-binding-calculation.component';
+import { StructuralDirectiveNgifComponent } from './structural-directive-ngif/structural-directive-ngif.component';
+import { AgeValidationComponent } from './age-validation/age-validation.component';
+import { AttributeDirectiveComponent } from './attribute-directive/attribute-directive.component';
+import { NgContainerAndNgTemplateComponent } from './ng-container-and-ng-template/ng-container-and-ng-template.component';
+import { NgTemplateOutletComponent } from './ng-template-outlet/ng-template-outlet.component';
+import { PortfolioBuilderComponent } from './portfolio-builder/portfolio-builder.component';
+
+export const routes: Routes = [
+  { path: 'protfolioBuilder', component: PortfolioBuilderComponent },
+  { path: 'templateOutlet', component: NgTemplateOutletComponent },
+  { path: 'templateAndContainer', component: NgContainerAndNgTemplateComponent },
+  { path: 'attributeDirective', component: AttributeDirectiveComponent },
+  { path: 'ageValidation', component: AgeValidationComponent },
+  { path: 'structrualDirngIf', component: StructuralDirectiveNgifComponent },
+  { path: 'twowaybindingCalculation', component: TwowayDataBindingCalculationComponent },
+  { path: 'twowaybinding', component: TwowayDataBindingComponent },
+  { path: 'downupkeyCounter', component: DownUpKeyCounterComponent },
+  { path: 'keyevent', component: KeyEventsComponent },
+  { path: 'mouseevent', component: BindMouseEventComponent },
+  { path: 'counterexample', component: CounterExampleComponent },
+  { path: 'propertybinding', component: PropertyBindingComponent },
+  { path: 'eventbinding', component: EventBindingComponent },
+  { path: 'first-component', component: FirstComponent },
+  { path: 'second-component', component: SecondComponent },
+  { path: 'defer-demo', component: DeferredLoadingComponent },
+  { path: 'signals', component: SignalTodoComponent },
+  { path: '', redirectTo: '/first-component', pathMatch: 'full' }
+];

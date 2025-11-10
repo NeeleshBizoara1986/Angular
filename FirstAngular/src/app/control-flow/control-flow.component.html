@@ -1,0 +1,217 @@
+<!-- control-flow.component.html -->
+<div class="container">
+  <h2>Control Flow Examples</h2>
+
+  <!-- @if example -->
+  <section>
+    <h3>&#64;if Example</h3>
+    <button (click)="toggleLogin()">Toggle Login</button>
+
+    @if (isLoggedIn) {
+    <div class="welcome">
+      <p>Welcome, {{ currentUser.name }}!</p>
+      <p>You are logged in</p>
+    </div>
+    } @else {
+    <div class="login-prompt">
+      <p>Please log in to continue</p>
+    </div>
+    }
+  </section>
+
+  <!-- @for example -->
+  <section>
+    <h3>&#64;for Example</h3>
+    <button (click)="clearUsers()">Clear Users</button>
+    <button (click)="restoreUsers()">Restore Users</button>
+
+    <div class="user-list">
+      @for (user of users; track user.id; let i = $index) {
+      <div class="user-item">
+        <span>{{ i + 1 }}.</span>
+        <span>{{ user.name }}</span>
+        <span>{{ user.status }}</span>
+      </div>
+      } @empty {
+      <div class="empty-state">
+        No users found
+      </div>
+      }
+    </div>
+  </section>
+
+  <!-- @switch example -->
+  <section>
+    <h3>&#64;switch Example</h3>
+    <select [(ngModel)]="selectedStatus">
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+      <option value="pending">Pending</option>
+    </select>
+
+    @switch (selectedStatus) {
+    @case ('active') {
+    <div class="status active">User is Active ✅</div>
+    }
+    @case ('inactive') {
+    <div class="status inactive">User is Inactive ⚪</div>
+    }
+    @case ('pending') {
+    <div class="status pending">User is Pending ⏳</div>
+    }
+    @default {
+    <div class="status unknown">Unknown Status ❓</div>
+    }
+    }
+  </section>
+
+  <div>
+    <h2>Role selection</h2>
+    <select [(ngModel)]="employeeRole">
+      <option value="">Select Option</option>
+      <option value="HR">HR</option>
+      <option value="IT">IT</option>
+      <option value="Admin">Admin</option>
+      <option value="Developer">Developer</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Analyst">Analyst</option>
+    </select>
+
+    @switch (employeeRole) {
+      @case ('HR') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @case ('IT') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @case ('Admin') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @case ('Developer') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @case ('Marketing') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @case ('Analyst') {
+        <h1>List of Employee</h1>
+        <h3>Selected Role: {{employeeRole}}</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Department</th>
+            </tr>
+            <tbody>
+              @for (emp of employees(); track emp.id) {
+                @if (emp.department === employeeRole) {
+                  <tr>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.department}}</td>
+                  </tr>
+                }
+              }
+        </table>
+      }
+      @default {
+        <h3>Please select a valid role to see the employee list.</h3>}
+    }
+  </div>
+</div>

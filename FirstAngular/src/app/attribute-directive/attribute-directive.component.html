@@ -1,0 +1,59 @@
+<div>
+    <p [ngClass]="updateStyles ">This is an Example of NgClass Directive.</p>
+    <p [ngClass]="{updateStyles: true,
+        itelicText: true,
+        letterFormat: true} ">This is an Example of NgClass Directive.</p>
+
+    <p [ngClass]="'updateStyles itelicText letterFormat'">Another way and an easier way, is to pass the ng class
+        directive value as string.</p>
+
+    <p [ngClass]="['updateStyles', 'itelicText', 'letterFormat']">Another way and an easier way, is to pass the ng class
+        directive value as string.</p>
+    <input type="text" placeholder="Type Something to change styles" (input)="updateStylesMethod($event)"
+        [ngClass]="{txt: hasText}">
+
+    <button (click)="toggelMode()">Switch To {{colorMode === 'lightMode' ? 'Dark' : 'Light'}} Mode</button>
+    <div class="box" [ngClass]="colorMode">
+        <h1>Light Mode</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
+            consequuntur odit dolor sequi pariatur aperiam fugiat ullam eos eveniet.
+            Quaerat quia nostrum vel. Atque eaque animi eos aliquid, minus culpa?
+        </p>
+    </div>
+    <div class="box" [ngClass]="colorMode">
+        <h1>Dark Mode</h1>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
+            consequuntur odit dolor sequi pariatur aperiam fugiat ullam eos eveniet.
+            Quaerat quia nostrum vel. Atque eaque animi eos aliquid, minus culpa?
+        </p>
+    </div>
+
+
+    <div>
+        <p [ngStyle]="{color: 'maroon', 'font-size': '30px'}">Example of [ngStyle] directive</p>
+        <p [ngStyle]="{color: colcorVal, 'font-size': fontSizeVal, 'font-style': isItalic}">Dynamic Example of [ngStyle]
+            directive with dynamic styles</p>
+        <p [ngStyle]="applyVal">Apply [ngStyle]
+            directive with Object styles</p>
+        <p [ngStyle]="{color: getColor()}">Apply [ngStyle]
+            directive with Object styles</p>
+    </div>
+
+    <form *ngIf="!formSubmitted">
+        <h1>Submit Form</h1>
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" class="form-control" [(ngModel)]="nm"
+                [ngStyle]="{'background-color': nm ? 'lightgreen' : 'red'}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" class="form-control" [(ngModel)]="email"
+                [ngStyle]="{'background-color': emailIsValid ? 'lightgreen' : 'red'}" (input)="validateEmail(email)" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!nm || !emailIsValid" (click)="showMessage()">Submit</button>
+    </form>
+    <p *ngIf="formSubmitted">Form submitted successfully</p>
+</div>

@@ -1,0 +1,46 @@
+<p>key-events works!</p>
+<div>
+    <label for="">Key Press: </label>
+    <input (keypress)="onKeyPress($event)" placeholder="Type something and press Enter" />
+</div>
+<div>
+    <label for="">Key Down: </label>
+    <input (keydown)="onKeyDown($event)" placeholder="Type something and press Enter" />
+</div>
+<div>
+    <label for="">Key Down Enter: </label>
+    <input (keydown.enter)="onKeyDownEnter($event)" placeholder="Type something and press Enter" />
+</div>
+<div>
+    <label for="">Key UP: </label>
+    <input (keyup)="onKeyUp($event)" placeholder="Type something and press Enter" />
+</div>
+<div>
+    <label for="">Focus: </label>
+    <input (focus)="onFocus($event)" placeholder="Type something and press Enter" />
+</div>
+<div>
+    <label for="">Select: </label>
+    <input (select)="onSelect($event)" placeholder="Type something and press Enter" />
+</div>
+
+<div>
+    <label for="">Input: </label>
+    <input (input)="onInput($event)" placeholder="Type something and press Enter" />
+</div>
+<p>You typed: {{value}}</p>
+
+
+
+<hr>
+<p>Task - Checking Shift key status</p>
+<div>
+    <label for="">Shift + P  triger the event : </label>
+    <input (keydown.shift.p)="isShift()" placeholder="Type something and press Enter" />
+</div>
+
+<div>
+    <label for="">Shift + Y  triger the event : </label>
+    <input (keydown)="isShiftY($event)" placeholder="Type something and press Enter" />
+</div>
+
