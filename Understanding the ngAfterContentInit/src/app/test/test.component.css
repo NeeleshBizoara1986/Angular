@@ -1,0 +1,11 @@
+.child-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  background-color: #8d9064;
+  width: 250px;
+  height: auto;
+  border-radius: 5px;
+  padding: 10px;
+}

@@ -3,4 +3,17 @@
 <p>Items: {{items.join(', ')}}</p>
 <button (click)="addItem('Item New')">Add New Item</button>
 <!-- <app-child [childMessage]="title" [inputValue]="parentValue" [user]="user"></app-child> -->
- <app-child [user]="user"></app-child>
+<app-child [user]="user"></app-child>
+
+<h2>Component Updation Hook</h2>
+<div class="parent-container">
+  <h2>Parent Compoent</h2>
+  <button (click)="sendDataToChild()">Send Data to Child</button>
+  <app-test>
+    <h3>{{dataFromParent}}</h3>
+    <div #contentWrapper>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias quis,
+      laboriosam ea aspernatur ipsum tempora accusantium?
+    </div>
+  </app-test>
+</div>
