@@ -1,3 +1,5 @@
+https://ltim.udemy.com/course/mastering-angular-new-interview-questions/learn/lecture/46866143#questions
+
 Create a detailed notes of the bellow transcript and generate a word document I don't want to skip any important things  also I don't want to miss any interview question: 
 
 1. Introduction transcript: When a component is created in angular, it goes through different life cycle phases, like from being
@@ -854,3 +856,1018 @@ You can test this same functionality with the Angie on Changes hook.
 And let me know how that goes.
 
 
+
+10. Understanding the ngAfterContentInit() hook (transcript): The ng after content init lifecycle hook is invoked whenever there is some content projected into the
+
+component.
+
+Now what do I mean by the content projection?
+
+We have seen the use of an input decorator for passing the data from parent component to child component,
+
+but it has a limit when it comes to passing certain types of data.
+
+We cannot use the add input decorator to pass the content that includes HTML elements or CSS, or any
+
+other type of data to the child component.
+
+That is where the content projection is used.
+
+The content projection is a way to pass the HTML or CSS content from the parent component to the child
+
+component, and to do so we use the Ng content directive.
+
+Take a look at this example.
+
+we have a parent and child component inside the parent component.
+
+We are loading the child component with some content, like a division having a CSS style applied on
+
+it, and a paragraph.
+
+We want to pass this content to the child component.
+
+For that inside the child component, we will give the Ng content directive and whatever content is
+
+passed within the app child will be passed inside the Ng content.
+
+So this is what the content projection is.
+
+And the ng after content init hook is invoked wherever there is a content projection.
+
+Let's check a practical example of it.
+
+I'll move to the app component TS file.
+
+We already have the test component created.
+
+Now inside this I'll implement the after content in it interface and define the Ng after content in
+
+it hook.
+
+Let's create a functionality which displays a random number in the text component.
+
+I'll create a property called data from parent and will create a method.
+
+Send data to child, in which I'll define the logic to generate a random number.
+
+And I'll assign the random number to the data from parent property.
+
+And inside the ng after content init hook, we display a console message saying that the hook was invoked.
+
+Now, inside the App components template, I'll give a heading.
+
+Then a button with text generate number and a click event with the Send Data method bound to it.
+
+Then I'll display the test component here and will display the random number here inside the H3 tag.
+
+Now inside the test component template, all we have to give is the Ng content directive.
+
+Let's do that.
+
+I'll go to the test component HTML file, giving the division a heading and the ng content directive.
+
+So the content given inside the app test will be passed inside the Ng content.
+
+Also, let me add the ng docheck hook inside the test component TS file, because the ng after content
+
+in it gets invoked after the ng docheck hook.
+
+This is not mandatory, we are just displaying it for the sake of this example.
+
+Let's look at the output.
+
+Now you can see inside the console we already have the Ng after content in it, and Ng do check hooks
+
+fired because the Ng after content in it gets triggered only once during the component's lifecycle.
+
+So here, if I click the button and display the random number, you can notice that only the ng do check
+
+is getting fired and not the Ng after content in it.
+
+That is because it gets called only once throughout the component's lifecycle, even if we update the
+
+projected content.
+
+So this is something worth remembering when working with the Ng after content in it.
+
+One more thing about this hook is it is mostly used in relation with the child components and content
+
+projection, But that does not mean that it is related to the energy content.
+
+Even if I comment the Energy Content directive, you can see the hook is still getting fired.
+
+So this is just a normal behavior of the energy after content in it hook.
+
+That is to execute once when the content is projected inside the component.
+
+And there are two more child decorators that are used for triggering the ng after content init hook.
+
+They are the view child and content child decorators.
+
+Let's check one more example by applying these two decorators inside the app component TS file.
+
+This time I'll invoke only the ng Docheck hook with a console message.
+
+And inside the app component HTML, I'll give a division Inside the app test component with a dummy
+
+text content and a reference to the division inside the test components template, I'll remove this
+
+ng content, and instead I'll define it inside a division, giving a reference to the division as well.
+
+Now, inside the test component TS file, I'll implement the after content init interface and will give
+
+the hook.
+
+Then I'll define the add view child and add content child decorators.
+
+Let's not worry about these two right now, because our focus is to understand the behavior of ng after
+
+content init hook.
+
+We will understand these two decorators in a dedicated lecture, but think of them as a way to communicate
+
+with the child component inside the ng after content init hook.
+
+I'll display three console statements First the hook was invoked.
+
+Message.
+
+Second, displaying the wrapper division.
+
+And third, displaying the content wrapper division.
+
+Let's check the output.
+
+So first the ng do check gets invoked, which is from the parent component.
+
+Then the ng after content in it gets invoked as the division content gets projected.
+
+And next is the wrapper division which says undefined because the component has not initialized the
+
+content at that point, and straight after it we have the content wrapper which shows the native element
+
+as division.
+
+This is where the content gets initialized and the ng after content init gets invoked for the last time.
+
+So this is how the ng after content init hook gets triggered upon component initialization.
+
+11. IQ - ngAfterContentInit() (Transcript): So let's discuss about the relative questions.
+
+The first is what is the Ng after content in IT life cycle hook in angular.
+
+So this life cycle hook is called once after angular has fully initialized all the content projected
+
+into the component via ng content.
+
+It is primarily used in components that use content projection to perform logic that depends on the
+
+projected content.
+
+This hook is called only once after the first ng do check.
+
+The second question is when would you use ng after content init instead of ng on init?
+
+So it can be used in scenarios where the component relies on content that is projected into it via ng
+
+content.
+
+Unlike ng on init, it, which is called after the component is initialized.
+
+The ng after content init ensures that all the content provided by the parent component has been fully
+
+projected and initialized.
+
+It is useful when you need to access child elements or perform operations that depend on the final content.
+
+And the last question is what will happen if you update the projected content after ng after content
+
+init is called.
+
+So the ng after content init hook is called only once, and that is after the initial content projection.
+
+If you update the projected content after this hook is called, angular will not trigger the ng after
+
+content init.
+
+Again, to handle updates to projected content, you would need to use other mechanism like ng do check
+
+or reactive change detection.
+
+12. Checking the content with ngAfterContentChecked() hook (transcript): Just like the Ng after content in, it checks for the content projection, the Ng after content checked
+
+checks for the content of the component on every change detection cycle.
+
+So this hook will get invoked each time the content of the component is checked after being projected.
+
+Let's implement this hook practically and understand its behavior.
+
+I'll continue with the previous lectures code.
+
+We already have some content which is getting projected in the Ng content directive.
+
+I'll implement the after content checked interface on the component by putting a comma as a separator.
+
+So like this you can implement multiple hooks on a component.
+
+Then I'll define the Ng after content checked hook with a console message displaying the hook was invoked.
+
+Let's check the output.
+
+So after the ng after content init gets invoked for the projected content, that projected content is
+
+further checked by the Ng after content checked hook.
+
+And on every change detection cycle, the content is checked by the hook.
+
+Now you may ask why is the Ng after content checked?
+
+Hook getting triggered three times with a do check hook.
+
+So this is just a normal behavior of this hook.
+
+The first call is invoked when the angular initializes the app test component.
+
+During this phase, angular renders and checks for the content inside the component.
+
+The second call is invoked after the change detection cycle right after the content is rendered for
+
+the first time.
+
+And the third call is invoked because Angular uses a double check mechanism to ensure everything is
+
+stable.
+
+So this is the reason why the hook is invoked three times with change detection.
+
+If I click on the generate button, you can see the content checked hook is getting triggered along
+
+with the do check hook.
+
+Let's check it a few more times.
+
+So every time a change is detected in the content, the Ng after content checked hook will be triggered.
+
+This hook is mostly used for the tasks that involve checking and responding to the changes on the content
+
+projected, like validation and error handling or debugging purposes.
+
+And as this hook gets fired immediately after the content is checked, there are high chances of performance
+
+issues if poorly implemented.
+
+
+
+13. IQ ngAfterViewInit() hook: So let's talk about related questions of ng after view init hook.
+
+The first is what is the purpose of the ng after view init hook.
+
+So the ng after view init hook is a lifecycle hook in angular that is called after angular has fully
+
+initialized the component's view, or any child views, which are basically the related template files.
+
+So this hook is a good place to perform tasks that depend on the views children being available, such
+
+as interacting with child components or Dom elements.
+
+The second question is what will be the difference if we apply the same code logic inside the ng on
+
+init hook instead of ng after view init.
+
+So from what we have learned, the ng on init hook will initialize the component when it gets fully
+
+rendered, and that does not imply on view getting fully rendered.
+
+So this might not give you the appropriate result, But with the ng after view init, it is guaranteed
+
+that the Dom elements are initialized and fully rendered.
+
+So when you want to deal with the Dom manipulation task, it is recommended that you use the ng after
+
+view init hook instead of ng on init.
+
+The next question how do you ensure that tasks performed in ng after view init don't cause the expression
+
+has changed after it was checked.
+
+Error.
+
+So to begin with, let's first of all understand what this error is.
+
+By looking at a simple example.
+
+Inside the app component, I will create a value property of type string and assign a string value that
+
+is initial value, and inside the ng after view init hook, I'll update the value property with a new
+
+value, let's say updated value.
+
+In the template file, I'll simply display the value inside an H3.
+
+Now let's look at the output and we do get the updated value displayed in the view.
+
+However, the console reflects something unexpected.
+
+It displays the expression has changed after it was checked.
+
+Error.
+
+This error occurs when angular detects that a value or expression has changed during its second change
+
+detection cycle.
+
+After the initial rendering of a component's view, this typically happens when the state of the component
+
+or its template changes after angular has finished checking for updates, causing angular to detect
+
+an inconsistency between the model and the view.
+
+This error occurs for various reasons, like the one which we are dealing with.
+
+Here is the case where the component property is modified after the initial change detection cycle executes.
+
+Especially with life cycle hooks like ng after view init or ng after content in it.
+
+There are many ways to deal with this error and at majority of time they are just the workaround.
+
+Fixes like the most basic way is to delay the second change detection cycle for ng after view init.
+
+So what I'll do is I'll give a setinterval method inside the ng after view init hook, and then I'll
+
+update the value property.
+
+Let's also display the console messages.
+
+So before the setinterval I'll give the message checking phase and after the value gets updated, I'll
+
+give a console message view updated.
+
+And let's also set a delay of two seconds.
+
+Let's save this and check the output again.
+
+And the error is gone because the view updation is delayed.
+
+So first comes the checking phase as we saw.
+
+And after two seconds comes the updation phase.
+
+That is the second change detection cycle.
+
+14. Checking The component View with ngAfterViewChecked() hook (transcript): Angular fires the energy after view checked hook.
+
+After checking the components view and the child views.
+
+So when angular is done with checking all the views, it invokes this hook along with every change detection
+
+cycle after the view is initialized.
+
+Let's practically see how it works.
+
+We already have implemented the random number example, so I am continuing with it.
+
+In the app component TS file, we have implemented the random number functionality and we are invoking
+
+the ng do check hook on every change detection.
+
+Then inside the components template, we are displaying the random number in the test component through
+
+the ng content directive, and in the test components, we have implemented the ng content checked,
+
+which gets invoked when the projected content is checked, and the ng after view init, which gets invoked
+
+when the view is fully initialized.
+
+Now let's implement the ng after view checked hook.
+
+And display a console message saying the hook was invoked.
+
+So this hook will get called when the view is initialized and checked by the angular.
+
+Let's check the output.
+
+So the first change detection cycle is executed and then the content is initialized and checked.
+
+That is this random number text content.
+
+And after that the view gets initialized.
+
+And finally the after view check gets invoked.
+
+Rest of the cycles are just executed by the angular change detection mechanism.
+
+Now let me clear the console and generate a random number.
+
+After the number is generated, the view gets updated.
+
+So the change detection gets invoked along with the content check and then the after view checked gets
+
+invoked.
+
+So the Ng after view checked will be called every time there is a change detected.
+
+This means that the Ng do check hook will also be triggered.
+
+Let's see it one more time.
+
+So this is how the Ng after view checked hook is invoked.
+
+You can also perform Dom related tasks with this hook which I am leaving for you to practice.
+
+15. Destroy Component With ngDestroy() hook (Transcript): Finally, the last cycle hook of the component is the Ng destroy hook.
+
+This hook is called only once during the component's life cycle, right before the component gets destroyed.
+
+So any cleanup code for the component should be written inside this hook before the component gets destroyed.
+
+And by cleanup code, I mean removal of local storage information, or stop timers, or any tasks that
+
+prevent the memory leaks should be given in this hook.
+
+Let's understand how to implement this hook practically.
+
+We already have a test component.
+
+Now let's implement a functionality that hides and shows the test component on a button.
+
+Click.
+
+And when the test component is hidden, it should be destroyed.
+
+So for that I'll create a boolean property named Display Component and set it to true.
+
+And then a toggle method which sets this property to false.
+
+This method we will bind with the button to show and hide the component.
+
+We already have seen this functionality in Angular Directives section, so I am skipping the explanation
+
+part for this.
+
+Next, I'll implement the Oninit interface on the component and the ng on init hook to show that the
+
+component is initialized.
+
+Then inside the template giving a division a heading.
+
+And a button with text show hide and binding the toggle method with a click event as we want to hide
+
+and display the text component.
+
+I'll give the if condition and assign the display component property.
+
+Let's now implement the Oninit and Ondestroy interface on the test component and define the related
+
+hooks.
+
+I'll give the ng on init hook with a console message.
+
+And Ondestroy hook with a console message as well.
+
+And we'll add some content in the test components template.
+
+Now let's check the output.
+
+We have both the components initialized at first.
+
+Let's hide the test component.
+
+And you can see the console message that the test component is destroyed.
+
+If we display the component again it gets initialized.
+
+So this is how the ng destroy hook is implemented to destroy a component.
+
+Also note that the Ng on destroy is not called when the user refreshes the page or closes the browser.
+
+So in case you need to handle some cleanup logic on those occasions, there are different approaches
+
+which we will see in forthcoming sections.
+
+So to summarize all the component lifecycle hooks, you can take a look at these steps and the diagram.
+
+
+
+
+
+------------------------------------
+
+
+Decorators:
+1. Introduction to Decorators: Angular provides a way to define or assign information to a component class, which we call as metadata.
+
+This way of defining information is done with the help of decorators.
+
+Decorators are prefixed with the @ sign and then the decorator name.
+
+So whenever you see an expression starting with the @ sign in angular, that means it's a decorator.
+
+Now what actually decorators are.
+
+So apart from their usage to pass the information, they are just a function with some code logic that is the metadata.
+
+And that metadata is passed to a component as a decorator.
+
+So basically with a decorator we are passing information to the component class or a function on how they should be processed, instantiated and used at runtime.
+
+Angular provides main four types of decorators.
+
+Class, property, method, and parameter decorators.
+
+And in the upcoming lectures, we will take a closer look at each decorator type and learn how to use
+
+
+2. Class Decorators @NgModule: Class decorators are the decorators, which tell us about the particular class, whether the class is a component or a module.
+
+Now there are several class decorators, and among them there is a decorator named Ng.module.
+
+Though this decorator is no longer used from the angular 17th version, as angular provides standalone
+
+components by default for the applications, so there is no need to define or create an extra set of
+
+modules.
+
+But it is still essential that we learn about the module, as there are certain important shared concepts
+
+and practices from the module system, such as dependency injection, service providers and lazy loading
+
+that are still applicable in standalone components.
+
+So to begin with, the Ng module decorator marks the class as a module and provides a set of properties
+
+which are used for providing metadata.
+
+So basically the Ng module is an object with some properties which takes an array as values, and whatever
+
+values given inside these properties are considered as metadata.
+
+And these metadata values given inside the Angie module are used by angular to organize the relationships
+
+between components, directives, and modules with provider services.
+
+Now we have already discussed some of the properties in the fundamentals section, so I will share a
+
+brief info about what these properties do.
+
+The declarations property is where we put all the components defined inside the project, like the app
+
+component, which is a default class component provided by angular when we first create a project.
+
+So every component you define will have an exported class with the same component name.
+
+Export is the keyword which is used to make the class globally available for use within the application.
+
+The imports property lets us use functionalities of different modules in the application.
+
+For example, this browser module contains the necessary services which are imported so that we can
+
+launch and run the application inside the browser.
+
+Note that whatever modules we want to import should be first explicitly imported in the file.
+
+Next is the provider's property, which is also called a provider's array.
+
+This is where we provide the service or guard files known as dependencies injected into the component.
+
+Finally, the bootstrap property where you give the component name to be loaded first inside the browser.
+
+That is the entry point.
+
+So instead of app component, if we have demo component, then the demo component will be set as the
+
+root component.
+
+And that gets displayed first in the browser.
+
+This is what the Ng module decorator offers.
+
+Note that there is no code needed within the class to tell angular that it is a module.
+
+All we need to do is provide the appropriate decorator and angular will do the rest.
+
+
+3. Class Decorators - @Component Decorator: The component decorator marks the class as an angular component and provides necessary metadata, which determines how the component should be processed during runtime.
+
+By default, it provides five properties selector, standalone imports, template URL, and style URL.
+
+Now we did cover each of them in the fundamentals section and being a part of the class decorators.
+
+Let's just go through the component decorator properties very quickly.
+
+The selector property indicates the selector associated with the component.
+
+That is, the value assigned to this selector property becomes an HTML tag using which you refer to the component inside the HTML template.
+
+As you can see here that if the selector property is set to the app-root, then in the HTML template,
+
+when we write app root like <body><app-root/></body>, then that component is rendered.
+
+You can give any name as a selector value, but by default this is how 'app-test' the angular defines the selector name for any component.
+
+Next, the standalone property, which marks the component as a standalone component, meaning it doesn't need to be declared in an ngmodule and can directly import dependencies.
+
+Imports property which is actually an array.
+
+Allows the component to use other modules and directives such as RouterOutlet for routing and CommonModule for common angular directives like NGIF and NgFOR, etc..
+
+The template URL property indicates the HTML file linked with the component, and the style URL property indicates the CSS file linked with the component.
+
+Apart from these properties, you can also specify other properties like template, style, animations, pipes, etc. which we will see as and when required.
+
+And as for the remaining class decorators, that is injectable directive and pipe.
+
+We are going to discuss them in dedicated sections.
+
+So from the next lecture we are starting with the property decorators.
+
+4. Property Decorators - @Input decorator : Property decorators are the decorators that 
+. are applied on the properties of the class, so that we can provide metadata or modify the behavior of the properties to perform some actions when that property is accessed.
+
+Let's start with the input property decorator.
+
+The input decorator marks the property as input property so that it can receive the data from the parent component.
+
+This decorator is generally used within the child component, so that whenever there is a change in parents component property, it gets reflected in the child component and that data flow can be connected by property binding.
+
+Let's understand the use of it practically by implementing a simple example.
+
+I have already created a child component.
+
+Now inside the app component, I'm creating a property of type string.
+
+Which displays a message.
+
+This message we want to display inside the child component.
+
+So inside the child component .ts file I'll import the input interface.
+
+And then we will decorate a property with input giving the property name as receive message which is of type string.
+
+And in the child components template I'll define a division A heading.
+
+And inside the paragraph I'll bind the message property.
+
+Now as the message is defined inside the app component which we want to pass into the receive message property.
+
+So for that we need to bind this display message property and receive message with each other inside the App Components template.
+
+Let's go to app component HTML file, defining a division a heading.
+
+And with the child component, I'll use the property binding to bind both the properties.
+
+So in the square brackets I'll define the property of the child component and assign the property of the parent component to it.
+
+Now, because the display message contains the string value, it is now bound with the receive message property, and if we check the output, we can see the message is getting displayed inside the child component.
+
+And if I change the message inside the app component, it will be reflected in the child component as well.
+
+Let's say I want to update the message on click of the button.
+
+So I'll create a method named Show Message, in which I'll set a different message for the property.
+
+Now inside the App Components template, I'll define a button update message and bind the show message method with the click event.
+
+And now when I click the button, the message gets updated in the child component.
+
+So with the input decorator, we can easily pass the data from parent component to child component.
+
+5. IQ - @Input Decorator - So let's discuss about the input decorator related questions.
+
+Q1 how can you pass data from parent component to child component.
+
+So in the parent components template we have to bind the child components input property with the parent components property using the square brackets syntax as shown here.
+
+<app-child [childComponent]="parentComponent"></app-child>
+
+And by this way we can easily pass data from parent to child with the input property decorator.
+
+Q2 can you pass primitive and object types with input decorator?
+
+How does angular handle change detection for both?
+
+The answer is yes.
+
+You can pass both primitive and object types using input decorator.
+
+Angular automatically tracks changes to primitive types because they are passed by value.
+
+However, for object types, including the array of objects, angular detects changes only when the reference to the object changes, that is, its memory in the location.
+
+Q3 can you alias the input property name?
+
+If so, how do you do it?
+
+Yes, you can alias the input property name by providing a string inside the decorator.
+parent.component.html
+<app-child [parentMessage]="messageToChild"></app-child>
+
+child.component.ts
+@Input('parentMessage') receivedMessage: string = '';
+
+child.component.html
+<p>Message received from parent: {{ receivedMessage }}</p>
+
+This allows the parent component to use a different name when binding to the property.
+
+Here, the parent component will use the alias parent message to bind to receive message property in the child component.
+
+6.Property Decorators  - @Output Decorator: We used input decorator to pass data from parent to child component.
+
+But when you want to pass data from child to parent component, we use the output decorator.
+
+@Output() myEvent = new EventEmitter();
+
+When the property is decorated with the output decorator.
+
+That property raises an event to notify the parent about the change, and that event is of type EventEmitter, which is nothing but a way to emit custom events.
+
+Let's check this with an example.
+
+We have a button defined here inside the child component, and that passes a string message to the parent
+
+component when clicked.
+
+So first inside the child component let's import the output and event emitter interface.
+
+And I'll decorate the property with the output decorator.
+
+With this we have to assign a new event emitter.
+
+The event emitter is always used in conjunction with the output decorator because, as I have mentioned
+
+earlier, the output decorator will raise an event from the child component that has to be observed
+
+by the parent component so that the relevant data is passed to the parent component.
+
+In short, the output decorator and the event emitter are defined together to create a mechanism for
+
+communication between the components by raising custom events.
+
+All right.
+
+Moving on I'll create a method emit event, and I'll emit the event with the property by giving the
+
+emit method.
+
+This method triggers a custom event and emits the value that has been defined in it.
+
+So let me pass a string message here.
+
+In the quotes I'll say event emitted from child component.
+
+This string message is the payload which will be emitted when the event gets raised from the child component.
+
+Now inside the Child Components template.
+
+Let me define a button giving text as click me and will bind the emit event method with the click event
+
+in the app component TS.
+
+We have to receive the string message coming from the child component.
+
+So I'll create a property called message of type string and a method named Receive Child event with
+
+a parameter.
+
+I'll explain the reason for giving parameter here in a few moments.
+
+Let me assign the message property to the parameter.
+
+At this point, you might get an idea that we are receiving the string message emitted from the child
+
+component inside the parameter argument and assigning it to the message property.
+
+But how are we going to get that message here inside the parent that is.
+
+For that, let's go to app component HTML file.
+
+I'll display the child component and I will bind the custom event which we raised in the child component.
+
+That is my event, and as it's an event, we bind the receive child event method with it and we will
+
+pass the event object as an argument.
+
+We have already covered what the dollar event that is the event object is used for in a dedicated lecture.
+
+So we will skip the detailed explanation here.
+
+But just so you know, this object represents the data emitted by the event.
+
+So when the child component emits the event having the string data, it gets captured inside the event object.
+
+And that data we will display inside the message property.
+
+That's it.
+7. IQ -@Output Decorator :
+Now let's talk questions.
+
+So what is the purpose of the output decorator and event emitter.
+
+Or the same question can be how can you pass data from a child component to parent component.
+
+So the answer is output decorator is used for passing the data from child component to parent component
+
+by emitting events that can be captured and responded to by parent components or other listeners.
+
+The custom events are emitted with the help of event emitter, which is defined with the property decorated
+
+with the output, and the data associated with the event can be captured in the parent component using
+
+the event object in the event binding.
+
+Child.component.ts
+@Output() notify = new EventEmitter();
+
+emitEvent() {
+	this.notify.emit('SOme Data');
+}
+
+parent.component.html
+<app-child (notify)="receiveMessage($event)"/>
+
+parent.component.ts
+receiveMessage(e:string) {
+	console.log(e);
+}
+
+
+8 Property Decorators - Accessing Child Component with @ViewChild :
+
+When we talk about performing Dom related tasks with JavaScript, like Dom manipulation or Dom traversal,
+
+we use the document methods like the Document.queryselector or document dot get element by ID and similar
+
+methods like this.
+
+In angular, we perform the same methods and handle them in a much better way by using the view child
+
+decorator.
+
+So the view child decorator is used to get the reference of the Dom element in the component.
+
+In angular, just like the Dom tree, it also has a component tree that begins with the root component.
+
+It renders a tree as soon as an application bootstraps, and each component represents a view known
+
+as view reference.
+
+In other words, we can say that each component instance holds a view reference, and this is where
+
+the view child is used.
+
+That is, it helps to perform query operations on the view and any change in the Dom will reflect in
+
+the view child.
+
+Let's understand how to implement this decorator by looking at an example.
+
+I have created a child component.
+
+Let's go to its TypeScript file.
+
+We are trying to implement a counter example.
+
+So let me create a property named count of type number and assign zero to it.
+
+Then I'll give a method to increment the count value in which I will increment the count.
+
+We'll say this dot count plus plus.
+
+Inside the child component's template I'll create a division giving a heading h3 child component, and
+
+will display the value of count in the paragraph counter value, colon the brackets and count.
+
+Now in the app component.
+
+We want to access this increment counter method of the child component.
+
+So to access the child component here inside the app component, I'm going to declare the view child
+
+decorator inside the parentheses of view child decorator.
+
+We have to pass the component which we want to access.
+
+So I'll give the child component and an alias to refer the child component.
+
+Let me also set it to child component.
+
+It is also referred to as property declaration.
+
+This declaration holds the reference of the child component.
+
+And we have to give the type of the property or alias, so giving the type as child component itself.
+
+Now as the property reference has to be initialized, I am giving a question mark here indicating that
+
+this property has no value at the initial stage, but will be assigned with a value at a later stage.
+
+So this is how we can access a component properly with the view child decorator.
+
+Next we want to access the increment counter method.
+
+So I will create a new method called increment child counter in which we first display the value of
+
+child component in the console as it is set to zero.
+
+Initially, it's going to display that value, and then using the component reference, we apply the
+
+increment counter method on the child component with it.
+
+We are now able to access the properties and methods of the child component.
+
+Here, as we have applied the view child decorator now in the App components template.
+
+Creating a division.
+
+Giving a heading inside H2 app component, then a button to increment counter binding the increment
+
+child counter method with the click event and displaying the child component that is app child.
+
+Let's check the output now.
+
+I'll increment counter value.
+
+The counter gets incremented and we get the reference of it in the console.
+
+This means that the method from the child component is getting successfully called.
+
+Here the counter is at five, and in the console we have the reference that shows four.
+
+This is because we are displaying the counter value first and then incrementing it.
+
+If I expand the property, we get the count value set to five.
+
+So with the view child we can easily access the child components and perform operations on it.
+
+But remember that this approach is not considered a good practice because generally this kind of tasks
+
+that is accessing the methods and properties from one component to another in order to pass.
+
+The data is usually carried out by the input and output decorators, which we have already seen.
+
+So the actual use of view child is when you want to access the specific element and execute some tasks
+
+that involve Dom manipulation.
+
+Let's check that as well, in fact.
+
+In order to access the element we have to give a reference.
+
+So let me give reference to the button.
+
+I'll say btn incr that is button increment.
+
+Now using this reference we will change the text of the button increment counter back to the TTS file.
+
+I'll again define the view child, but this time instead of the component, I'll give the reference
+
+of the element inside the parentheses and then we define a property.
+
+For reference.
+
+I'll give btn ref and we specify the type of reference which will be of type element ref instead of
+
+component, that is reference element.
+
+The element reference is a class that is used whenever we want to deal with the elements of Dom.
+
+As this class acts as a wrapper around the native elements of Dom actually.
+
+Also, it is a good practice to give what type of element reference we are trying to get.
+
+I'll provide a type reference and as you can see all the HTML elements are provided here, be it body
+
+element or div element or even a form element.
+
+We can access any of the HTML elements.
+
+And as we are trying to refer to the button, I'll give the type parameter as HTML button element.
+
+And when we are dealing with Dom manipulation, it is always a better practice to execute such code
+
+inside the ng after view init hook.
+
+So let me implement the interface after view init.
+
+Now in the ng after view init hook, I'll give a condition to target the button element by giving if
+
+this dot btn href that is button reference dot native element.
+
+Here the native element is the property that is provided by the element ref class to target the element
+
+of Dom.
+
+Now inside the condition I'll give this dot btn ref native element dot innerHTML.
+
+Using the innerHTML to change the content of the element to new text that is counter plus plus.
+
+That's it.
+
+If we look at the output again, the text of the button is changed.
+
+So not only can we access the components for communication, but we can also target a specific element
+
+using the view child decorator.
+
+ 

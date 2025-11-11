@@ -1,0 +1,16 @@
+<div>
+    <h3>Child Component</h3>
+    <ul>
+        @for (item of items; track item; let i = $index){
+        <li>{{item}} <button (click)="deleteItems(i)">Delete</button></li>
+        }
+    </ul>
+</div>
+
+<button (click)="emitEvent()">Emit Event</button>
+
+
+<div>
+    <h3>Child Component</h3>
+    {{count}}
+</div>

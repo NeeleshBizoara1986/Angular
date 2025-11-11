@@ -1,0 +1,6 @@
+<h2>Parent Component</h2>
+<button (click)="addItem()">Add Item</button>
+@if(itemString.length){
+    <app-child-prop-binding (notify)="receiveChildEvent($event)" [items]="itemString" (itemDeleted)="removeElementFromList($event)">  </app-child-prop-binding>
+}
+<h3>{{receivedMsgFromChild}}</h3>

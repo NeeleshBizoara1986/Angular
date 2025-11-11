@@ -17,8 +17,10 @@ import { AttributeDirectiveComponent } from './attribute-directive/attribute-dir
 import { NgContainerAndNgTemplateComponent } from './ng-container-and-ng-template/ng-container-and-ng-template.component';
 import { NgTemplateOutletComponent } from './ng-template-outlet/ng-template-outlet.component';
 import { PortfolioBuilderComponent } from './portfolio-builder/portfolio-builder.component';
+import { PropertyDecoratorComponent } from './property-decorator/property-decorator.component';
 
 export const routes: Routes = [
+  { path: 'propertyDecorator', component: PropertyDecoratorComponent },
   { path: 'protfolioBuilder', component: PortfolioBuilderComponent },
   { path: 'templateOutlet', component: NgTemplateOutletComponent },
   { path: 'templateAndContainer', component: NgContainerAndNgTemplateComponent },
