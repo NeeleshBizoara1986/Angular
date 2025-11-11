@@ -1,0 +1,856 @@
+Create a detailed notes of the bellow transcript and generate a word document I don't want to skip any important things  also I don't want to miss any interview question: 
+
+1. Introduction transcript: When a component is created in angular, it goes through different life cycle phases, like from being
+
+created to being destroyed.
+
+To understand what this means, let's look at a simple example.
+
+We have an app component class and when the class is created, the constructor method is called automatically.
+
+In fact, it is the first method executed if we have defined it.
+
+Let's define the constructor with a console message and see what happens.
+
+So when the component class gets instantiated, the constructor is called and the display message is
+
+executed.
+
+Like constructor, there are other such methods called automatically add the different levels or phases
+
+of a component's life cycle.
+
+And that's why they are component lifecycle methods or lifecycle hooks.
+
+Let's try a lifecycle hook called ng on init, which is executed automatically when the component is
+
+initialized.
+
+Let me give a console statement.
+
+And this is also called automatically.
+
+As you can see, just because I have defined it, I have not called ng on init or constructor anywhere.
+
+Like other methods, there is a definition, but they get called automatically when that phase comes
+
+in picture.
+
+So basically this automatic call is handled by the angular itself.
+
+Behind the scenes after construction, the component goes through a series of lifecycle phases such
+
+as ng on init, ng on changes, ng, do, check, etc. if we have defined these lifecycle methods are
+
+nothing but specific events, but are called by the component, and we can perform related actions in
+
+those methods.
+
+Typically, a component follows a strict order for each hook.
+
+Initialization.
+
+Each component goes through these eight phases when defined, and each phase is linked to the component,
+
+and we are going to check what each phase is used for in this section.
+
+2. Component creation hook ngOnChanges() Transcript: The Ng on changes hook is called every time whenever there is a change detected in input properties
+
+of the component.
+
+Let's look at an example.
+
+Inside the app component TS file, I'll create a property input value of type string and will assign
+
+a string value to it.
+
+Now generally when angular creates a component, if you compare it with a class, when we create an
+
+object of a class with new keyword, it instantiates the object of that class, and the constructor
+
+is called automatically.
+
+However, angular does not directly create instances of components using the new keyword.
+
+This is done behind the scenes.
+
+So inside the constructor, I'll give a console statement and display the string value of property.
+
+So this means when the app component is instantiated, the constructor will be called and it should
+
+display this console log message.
+
+And when I change the value, the ng on changes hook is informed and it will handle all the changes.
+
+Let's try to handle the change with ng on changes hook first.
+
+To make things more interesting, let me create a new component named test, which basically acts like
+
+a child component.
+
+Inside the test component TS file, I'll import the on changes interface to make use of ng on changes
+
+hook.
+
+Then we have to implement that interface on the component, and after that we can use the ng on changes
+
+hook inside the component.
+
+It takes an argument named changes which is of type simple changes interface.
+
+We will see the use cases of it later on.
+
+But right now let's just try to detect a change with the input value property.
+
+I'll give the add input decorator with the input value property.
+
+This decorator is used for passing the value from the parent component to the child component.
+
+But the change does not reflect directly.
+
+We need to bind the input value property of app component that is parent component inside the test component
+
+inside the brackets, we give the property from the test component, and the one without the brackets
+
+is the property of the app component.
+
+Now that the properties are bound to each other, back to the test component TS file inside the ng Onchange
+
+method, I'll display a console message.
+
+And will also display the value of changes argument inside the console.
+
+Let me comment on the constructor as it is not needed anymore.
+
+Let's go to the output and the ng on change is hook is triggered.
+
+Now that is it will continuously watch for a change.
+
+Let me expand the changes argument and we get three properties in it.
+
+Previous value.
+
+Current value and the first change which is of type boolean.
+
+The current value property holds the value coming from the parent that is App.component.
+
+So if I change the value from the App.component, it will get reflected inside the child that is test
+
+component.
+
+As you can see inside the current value.
+
+So every time the input data is changed, that changed information is passed to the simple changes interface
+
+and is reflected in the output.
+
+This is how the change is detected with the neon changes hook.
+
+So whenever you want to handle input changes, you want to read the values.
+
+You want to update the fields.
+
+It is the Ng on changes hook coming handy.
+
+
+3. IQ - ngOnChanges() Transcript : Let's discuss the questions about Ng.
+
+On changes hook.
+
+So what is the purpose of the Ng on changes hook in angular?
+
+This hook is used to detect and respond to changes in input properties of an angular component.
+
+It is called whenever there are changes to input properties.
+
+Next is how does Ng on changes differ from Ng on init?
+
+So the ng on changes hook is called whenever an input property changes even before the component is
+
+initialized.
+
+While ng on init hook is called only once after the first change detection cycle when the component
+
+is initialized.
+
+Third question is can engine changes be used to detect changes to non-input properties?
+
+Well absolutely not.
+
+This engine changes is specifically designed to detect changes in input properties which are decorated
+
+with the input decorator.
+
+
+4. Understanding SimpleChanges Object (Transcript): When the Ng on changes hook is defined, there is an argument passed in it which is of type simple changes
+
+interface object, which I mentioned in the previous lecture.
+
+Also, it is used for viewing the changes and its related properties.
+
+When there is some change in the values.
+
+As the simple changes is an object, it contains information in key and value pairs, where the key
+
+represents the properties that have changed and value represents the data that has changed.
+
+Let's understand these properties and how it reflects the changes by looking at a very simple example.
+
+I am continuing with the previous code, creating a method called update value which changes the value
+
+of the input, creating a button inside the template, giving the text update value, and will bind
+
+the update value method with the click event so when this button is clicked, it will call the update
+
+value method, which will change the value of the input property.
+
+Now, inside the test component's file, we already have an Ng on changes hook defined with the simple
+
+changes argument.
+
+I am defining two more properties here of type string.
+
+Previous value and current value.
+
+I have given the pipe symbol, which is denoted as union type in TypeScript.
+
+It is used when you are uncertain of what value to initialize with a property.
+
+We are going to capture the previous and current values inside these properties with the help of simple
+
+changes.
+
+So for that, let me first remove these console statements and giving an if condition that if the input
+
+value property has changed, I am giving the square brackets notation here so that the changes object
+
+can access the input value property from the app component, as we have bound the properties inside
+
+the template so that the flow of data from parent to child is allowed easily.
+
+So this syntax allows us to keep track of any change in input value property of app component so that
+
+we can perform actions here in the child component.
+
+Back to the condition.
+
+If the input value changes, I'll capture the previous value inside the previous value property by applying
+
+previous value property of simple changes.
+
+The previous value property returns the value which was previously entered in the input.
+
+Similarly, I'll capture the current value by applying the current value property of simple changes.
+
+The current value returns the current value which is entered in the input, and I'll display the changes
+
+object itself in the console.
+
+Let's display the previous value and current value inside the template using the H2 and putting the
+
+previous value in the brackets, and same is the case with current value.
+
+Now let's check the output.
+
+Initially, the current value is set to the new value, which is assigned in the app component and there
+
+is no previous value.
+
+So by default at the initial stage it will be undefined.
+
+Let's click the update value button.
+
+And now the previous value and current value gets updated.
+
+If I expand the object in the console, we can see the previous and current values, and the first change
+
+property gets updated as well.
+
+It returns a boolean value true if the previous value and current values are the same.
+
+Else it will return false.
+
+So this is how the simple changes argument is used with Angie on changes hook.
+
+
+5. IQ - SimpleChanges Object (Transcript): What is simple changes in angular and what is its purpose?
+
+Simple changes is an interface that tracks the changes of input properties of a component, providing
+
+information about the changes such as previous and current values, and that is where it is used mostly
+
+to respond to the changes made in the input properties.
+
+Second question how do you access the previous value of an input property using simple changes?
+
+We can access the previous value by using the changes object with the property name like we did here.
+
+How can you determine whether an input property has actually changed when using simple changes, rather
+
+than just being reassigned with the same value?
+
+You can compare previous value and current value within the simple change object to determine if the
+
+input property has actually changed.
+
+If they are the same, the value hasn't really changed.
+
+Fourth question what would happen if an input property changes multiple times before angular's change
+
+detection runs?
+
+How does simple changes handle this?
+
+If an input property changes multiple times before angular's change detection runs, simple changes
+
+will only capture the most recent change.
+
+It does not store the history of changes between detection cycles.
+
+Let's see an example to check this.
+
+In the same example, instead of assigning the app component to input value, I'll give three different
+
+values.
+
+That is, first update.
+
+Second update, and third update.
+
+By providing input values like this, the input property is getting changed multiple times before the
+
+angular runs the change detection And if we check the output currently the current value is assigned
+
+to the new value and there is no previous value.
+
+I'll click on the button.
+
+And as you can see, the current value is set as the third update.
+
+This is because the simple changes will only capture the most recent update.
+
+So the first value and second value does not get captured.
+
+So this concludes that intermediate updates that occur before the detection cycle are ignored by the
+
+simple changes.
+
+And the last question is can simple changes detect changes to nested properties or arrays.
+
+Well it detects changes to the reference of an object or array, but it does not detect changes within
+
+the contents of an object or array.
+
+You would need to manually check for changes within the object or array.
+
+6. Component Creation Hook - ngOnInit() (Transcript): One of the most useful life cycle hooks in angular is the ng on init hook.
+
+The ng on init hook is implemented by importing the on init interface inside the TypeScript file.
+
+Now this hook is called only once during the component life cycle, and that is when a component is
+
+initialized.
+
+Normally the ng on init is called after the engine changes is called, but when there is no template
+
+bound inputs like we saw in the previous examples, the ng on init call is made first.
+
+So whenever the ng on init call is made by angular, it indicates that angular is done creating the
+
+component internally, and whatever initialization code is written inside the ng on init hook is executed
+
+at that moment.
+
+Let's look at a simple example, I'll import the ng on init interface from the angular core, and then
+
+we will implement it with the component.
+
+After that, let me define the ng on init hook by saying ng on init method.
+
+Here I will first try to display the console message inside the method.
+
+I'll give ng on init component has been initialized.
+
+Along with this, let me also give the constructor and display a console message here as well.
+
+I'll give the message constructor component is being constructed.
+
+Let's check the output.
+
+I'll open the console and we get the messages.
+
+But if you notice the constructor message is getting displayed first and then the ng on init message.
+
+So this implies that the constructor of a component class is called immediately when the component is
+
+instantiated.
+
+This happens before angular sets up the components, inputs, or runs change detection.
+
+However, the constructor does not wait for the component's view to be fully rendered, while the ng
+
+on init lifecycle hook is called after the component has been initialized, meaning that angular has
+
+finished creating the component and has set up all its inputs.
+
+This is also before the components view is rendered in the Dom, but it's after angular has set up the
+
+data bound properties.
+
+Let's see one more example.
+
+Let's create a counter increment example with it.
+
+I will create a count property of type number and setting the initial value to zero.
+
+Then we'll create a method named Start Counter, in which I will give the set interval and a condition
+
+that if the count is less than equal to five, then increment the counter.
+
+Now to instantiate this method, when the component is initialized, we define the method inside the
+
+Ngoninit hook.
+
+So when this app component gets initialized completely, then only it will instantiate the start counter
+
+method.
+
+I am coming to the point why I emphasize on the complete initialization of the component.
+
+I will set the time interval of 1000 milliseconds.
+
+That is one second.
+
+I'll also stop the interval.
+
+So let me define a property named counter interval of type any and assign it to the set interval.
+
+In the else condition, I'll clear out the interval by giving the clear interval method and the counter
+
+interval property.
+
+Let's check the output and we get the counter value incremented as the component is initialized in the
+
+browser.
+
+Now if I instantiate this start counter method inside the constructor instead of ng on init hook.
+
+Then also we get the same output as you can see.
+
+But here is the catch.
+
+As we discussed earlier in the section introduction, the constructor is the first life cycle method
+
+that is executed before any other life cycle methods.
+
+So the code given inside the constructor gets executed when the class instance of the component is created,
+
+and not necessarily on the component initialization.
+
+Angular may not have completed its initialization process when the constructor runs, so it's not a
+
+good practice to define any initialization process that deals with the angular lifecycle inside the
+
+constructor.
+
+Because the constructor is called before the engine init, so at that time it can happen that the component
+
+has not been fully created yet, and only the component class has been instantiated.
+
+While the ng on init waits for the component to fully initialize before getting called.
+
+So it's an ideal practice to perform tasks like initializing component properties or making API requests
+
+inside the ng on init hook.
+
+7. IQ - ngOnInit() (Transscript) : Now let's talk about a few questions related to ng on init.
+
+Hook.
+
+Explain the difference between constructor and ng on init hook.
+
+Well, you already know the explanation, so you can discuss the scenarios we saw in the previous lecture.
+
+Next question can you use ng on init to fetch data from an API?
+
+If so, why would you prefer it over using the constructor?
+
+So the answer is yes.
+
+The ng on init is definitely a preferred place to fetch data from an API.
+
+Fetching data in the constructor is not ideal because Angular's change detection and dependency injection
+
+are not fully initialized at that point of time.
+
+Ng on init ensures that the component is ready to handle asynchronous data, and that all necessary
+
+services are properly injected and Available.
+
+Third question is it possible for ng on init to be called multiple times in the life cycle of a component?
+
+No.
+
+Ng on init is only called once during the life cycle of a component.
+
+After the initial component initialization, the method won't be called again even if the component
+
+undergoes changes.
+
+For example, when.
+
+Ng on changes is called due to input changes.
+
+And the last question is what happens if you try to use input properties in the constructor instead
+
+of ng on init?
+
+Well, if you try to access input properties in the constructor, they will be undefined because the
+
+input bindings are not yet initialized when the constructor is called.
+
+To check this, let's look at an example.
+
+I have created a child component and I have imported that component here.
+
+Inside the app component.
+
+In the app component, I'll create a property of type string and assign a string message hello from
+
+the app component.
+
+Now inside the Child Components TypeScript file, I'll implement the Oninit interface and define the
+
+method that is ng on init.
+
+Then I'll create an input property input value of type string or undefined and inside the ng on init
+
+I'll simply log the input value.
+
+Same thing with the constructor.
+
+Let's display the input value inside the child components template.
+
+I'll give an h2 with the heading and display the input value inside the paragraph tag.
+
+Now let's bind the input value with the parent value.
+
+I'll open the app components template and here I'll give the component name that is App Child and bind
+
+the input value property with parent value.
+
+Let's save this and check the browser.
+
+We can clearly see the received input from the app component, and in the console you can see it shows
+
+undefined, whereas the ng on init is showing the string pass to the input.
+
+So input properties are undefined in the constructor because angular initializes the component before
+
+setting its input properties.
+
+These bindings are applied after the constructor is invoked, and that is the reason why it is showing
+
+undefined and ng on init is called once all input properties are set, making it the appropriate place
+
+to access them.
+
+8. Detecting Custom Changes With ngDoCheck() hook (Transcript): The Ng do check life cycle hook is used for performing a custom change detection and responding to the
+
+changes in a component.
+
+So basically it allows us to implement our own change detection algorithm for the given component.
+
+Previously, we saw how the Ng on changes hook responded to the changes made with the data bound input
+
+property.
+
+But there are some scenarios where angular does dirty checking to compare the properties on a change.
+
+And in those cases, the Ng on changes does not get fired when a change is made with the input properties.
+
+So this is where the Ng do check hook comes to rescue.
+
+When angular fails to detect the changes to the input property, the do check allows us to implement
+
+our custom change detection.
+
+Let's see how to detect the change with the new check hook.
+
+First, I'll use the Ng on changes to check the limitations, and then we'll refactor it using the Ng
+
+to check to understand when exactly it is needed and how the Ng two check is different from Ng on changes.
+
+All right, so inside the app component TS file, I'll create a user object with the name property and
+
+a simple change username method, which changes the username to a different value.
+
+Let's create a test component.
+
+Now I'll give the NJC test command.
+
+And inside the test component TS file, let's define the Ng on changes hook first to detect the change.
+
+I'll import the on changes interface.
+
+Then we'll implement the interface on the component will say export class test component implements
+
+on changes.
+
+Now defining the Ng on changes hook and will simply display the changes object with a message and with
+
+the add input decorator.
+
+I'll declare the user property of type any as it will take an object as value.
+
+Now we need to bind the user property of the app component and the test component, giving the user
+
+property of the test component inside the brackets and binding the user property from the app component
+
+with it.
+
+Then we need a button to change the user name, giving the button.
+
+Button text.
+
+Change user name and binding the change username method with the click event.
+
+And finally inside the test component template will define a heading, and I'll display the user object
+
+by giving the JSON pipe with the user property.
+
+We will understand the angular pipe concepts in detail in a dedicated section.
+
+But right now to understand the syntax, it will just convert the object data to JSON data.
+
+That's it.
+
+All right.
+
+Now let's check the output.
+
+And we are detecting the change with the Ng on changes hook.
+
+So in the console we see the Ng on change is message.
+
+And the simple change is object.
+
+Let me expand it.
+
+We have a current value that is given inside the app component.
+
+And there is no previous value.
+
+And the first change property is set to true as well, indicating there is no change triggered.
+
+Let me click the change username button and we can see the username name changes to a different value.
+
+But notice the console.
+
+The engine changes.
+
+Hook is not triggered for this change.
+
+There should have been another simple changes object displayed inside the console, isn't it?
+
+So this kind of behavior with Ng on changes is something which we cannot avoid.
+
+Now if we had changed the entire user object, then it would have triggered the change, but not for
+
+a particular object property.
+
+So this is where the ng do check hook is used.
+
+Let's implement it and understand the difference.
+
+So importing the do check interface and will implement it with the component giving the ng do check
+
+hook.
+
+And generally it does not take any parameter by default.
+
+Let's create a separate property to capture the previous value.
+
+I'll create a private previous user name property of type string and initializer as undefined.
+
+Now in the new check method, passing an if condition that if user dot name property is not equal to
+
+the previous user name property, then assign the user dot name property to the this dot previous user
+
+name.
+
+Now with this condition, we are trying to trigger a change in the user name property.
+
+So when the current user name is not equal to the previous user name, then the condition evaluates
+
+to true, indicating that the name property has been changed.
+
+And we further display the value inside the console with a message that user name changed.
+
+Let's check the output now, and we have the current value displayed in the console.
+
+Now let me click the button and the username gets changed.
+
+And that change is detected in the console by the ng docheck hook.
+
+So the ng do check manually checks for the changes within the user object's name property.
+
+Thus, when the name property was modified, the ng Docheck was able to detect the change and displayed
+
+the value.
+
+So with the ng two check hook, you can create a custom change detection for a component.
+
+Important point to remember is never use Ng on changes and ng do check hooks together in the same component.
+
+They are not intended to be implemented together inside the same component, as it causes unwanted behavior,
+
+and increases the code complexity.
+
+9. IQ - ngDoCheck() (Transcript):  Now let's talk about the questions related to Ng2 check hook.
+
+The first is explain what is the ng2 check hook in angular and when is it called?
+
+So the ng2 check is a lifecycle hook in the angular, which is called during every change detection
+
+cycle.
+
+It allows developers to implement custom change detection logic like we saw in the lecture.
+
+And unlike Ng on changes which only responds to changes in input bound properties, ng do check is triggered
+
+regardless of any input property changes, providing more control over the change detection.
+
+The next question explain how the energy on changes is different from Ng.
+
+Do check hook.
+
+Well, we already covered this in the previous lecture, so you can discuss the scenarios which we saw.
+
+One important point to always remember is Ng on changes is bound to the properties which are decorated
+
+with the input decorator.
+
+So when you want to detect changes for the properties which are not decorated with the input decorator.
+
+In those cases the ng do check hook is used.
+
+Next question how does the Ng do check hook?
+
+Compare the Angular's default change detection mechanism.
+
+So again, you can discuss the same scenario that Angular's default change detection mechanism automatically
+
+tracks changes to the input bound properties and triggers the appropriate updates.
+
+Whereas the Ng do check allows us to override this default mechanism with custom change detection logic,
+
+offering more control over when and how changes are detected.
+
+Ken Ng do check replace Ng on changes.
+
+Why or why not?
+
+Well, the Ng do check does not replace Ng on changes.
+
+In fact, while both hooks are related to change detection, They serve different purposes.
+
+Angyan changes is specifically designed to respond to changes in input bound properties, providing
+
+a simple and efficient way to react to changes in those properties.
+
+Whereas Ng Do Check offers a more general purpose change detection mechanism, allowing for custom detection
+
+logic beyond input bound properties.
+
+However, it does not provide the simple changes object which contains previous and current values of
+
+input properties as Angyan changes does.
+
+Next question what are some practical use cases where ng do check would be the best solution?
+
+So ng do check can be implemented to monitor the changes beyond the angular's default change detection.
+
+For example, watching for deep changes in nested objects or arrays.
+
+Detecting changes from external libraries like if the component interacts with a third party library
+
+that changes the state of component.
+
+Outside Angular's change detection system.
+
+Ng do check can be used to monitor those changes and for the manual state management of course.
+
+And the last one is how can you detect changes in an array using the Ng Docheck hook to detect changes
+
+in an array using.
+
+Ng do check.
+
+We can compare the current state of the array with the copy of its previous state.
+
+Let's check an example.
+
+Inside the app component, I will create an items array of type number array and assign the values that
+
+is one, two and three.
+
+Similarly, I'll create one more property previous items of type number array.
+
+This will store the copy of the items array.
+
+So I will give the spread operator and this dot items.
+
+Let's implement the ng do check hook.
+
+I'll first implement the do check interface on the component and will give the lifecycle hook that is
+
+ng do check.
+
+Here I'll state an if condition that if the items array dot length is not equal to the previous items
+
+dot length, then that means the array is changed.
+
+I'll give a console statement that array changed and display the previous items array and the new updated
+
+array that is items array.
+
+And now we will store the new updated array values inside the previous items array.
+
+So for that I will use the spread operator.
+
+Now let's add an item in the array by using the push method.
+
+I'll create a method add item and we'll push the item inside the items array.
+
+I'll give this dot items dot length plus one.
+
+Now in the template file I'll give a division and an h3 where we display the items array.
+
+I'll give the join method to display the comma separator and a button for adding the item.
+
+I'll bind the add item method with the click event.
+
+That's it!
+
+Let's save this and check the output.
+
+We can see the array.
+
+Let me add an item.
+
+And there we go.
+
+The ng do check hook gets triggered when the change happens in the array, and on every change the hook
+
+gets triggered.
+
+So this is how we can perform or detect manual changes.
+
+That is check for the deep changes beyond the angular's change detection mechanism.
+
+You can test this same functionality with the Angie on Changes hook.
+
+And let me know how that goes.
+
+
