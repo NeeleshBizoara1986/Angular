@@ -5,10 +5,10 @@
 </ng-container>
 
 <hr />
-<ng-template #showMsg let-message="msg">
-    <p style="font-size: 20px; color: green;">{{message}}</p>
+<ng-template #showMsg let-message="msg" let-testMsg="testMessage">
+    <p style="font-size: 20px; color: green;">{{message}} - {{testMsg}}</p>
 </ng-template>
-<ng-container *ngTemplateOutlet="showMsg; context: { msg: 'Hello from context!' }">
+<ng-container *ngTemplateOutlet="showMsg; context: { msg: 'Hello from context!', testMessage: 'Another message' }">
 </ng-container>
 
 

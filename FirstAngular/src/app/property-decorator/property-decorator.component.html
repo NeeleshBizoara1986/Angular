@@ -1,6 +1,25 @@
 <h2>Parent Component</h2>
 <button (click)="addItem()">Add Item</button>
 @if(itemString.length){
-    <app-child-prop-binding (notify)="receiveChildEvent($event)" [items]="itemString" (itemDeleted)="removeElementFromList($event)">  </app-child-prop-binding>
+<app-child-prop-binding (notify)="receiveChildEvent($event)" [items]="itemString"
+    (itemDeleted)="removeElementFromList($event)">
+    <section #sectionContent>
+        <h3 appHighlightElement>Heading</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, autem nihil. A qui ipsum totam adipisci
+            nobis, quos minus fuga neque aspernatur, consectetur itaque officia! Voluptatum fugit qui quae. Quidem.</p>
+    </section>
+</app-child-prop-binding>
 }
 <h3>{{receivedMsgFromChild}}</h3>
+
+<div>
+    <h2 appHighlightElement>Accessing child component from Parent Component</h2>
+    <button #btnIncr (click)="incrChildCounter()">Increment Counter</button>
+</div>
+
+<div appHighlightElement>
+
+    <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut architecto temporibus repellendus eaque nam totam adipisci dolor, asperiores sit molestiae quisquam unde beatae! Distinctio, optio magni vero et pariatur laborum.</p>
+</div>
+
+<app-color-picker></app-color-picker>
