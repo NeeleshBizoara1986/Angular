@@ -1870,4 +1870,1170 @@ So not only can we access the components for communication, but we can also targ
 
 using the view child decorator.
 
+Use ViewChild with { static: false } and ensure the element exists before updating.
+Avoid optional chaining for assignments; use conditional checks or non-null assertion.
+
+
+9. IQ - @ViewChild decorator : 
+Q. what is the purpose of view child decorator?
+
+Well, it is used whenever you want to interact with the child components, properties, methods or the template elements.
+
+It is used as a query to obtain the references of the child, component methods and elements.
+
+In order to perform tasks such as Dom manipulation or passing the data between the components.
+
+Q. what is the role of NgAfterViewInit when working with view child?
+
+So it's a lifecycle hook in angular that is commonly used with view child, it is called after the view and child components have been initialized, making it a suitable place to interact with the child components obtained using the ViewChild.
+
+
+10. Property Decorators - Accessing The Projected Content With @ContentChild: With the ViewChild, we get the reference of any Dom element in the component.
+
+The ContentChild is very similar to it, but instead of getting reference of the component's Dom elements, we get the reference of the content projected into the component's view so that we can format or apply CSS on the content.
+
+A quick recap about what is content projection.
+
+It is a way to pass the HTML content from the parent component to the child component using the ng-content, so the ViewChild cannot get us the reference of the content projected.
+
+This is where the ContentChild is used.
+
+Let's practically implement and understand the content child inside the app component HTML.
+
+I am already displaying the child component.
+
+Let me define some content in it.
+
+I'll give a section tag, then a heading with H3 and a paragraph and in the child component HTML file,
+
+I'll define the ng content.
+
+So this is going to project the app components content inside the child component.
+
+Let's check the output.
+
+And we have the content projected in the child component.
+
+Let's try to target the paragraph element from the projected content.
+
+So inside the child component CSS file I'll give the content child decorator.
+
+And just like we saw in the view child we have to give the reference of the projected element.
+
+Here let me set a reference for the paragraph element.
+
+I'll give the hash show para.
+
+That is show paragraph.
+
+I'll pass this inside the content child and provide the property reference as para ref.
+
+Rest of the steps stay the same.
+
+We give the element ref as type to manipulate the Dom using the content child We have to make use of
+
+the Ng after content in it, which is the life cycle hook, because this hook gets called whenever the
+
+projected content is loaded inside the component.
+
+So let me implement the after content in IT interface and define the hook.
+
+And inside the hook, I'll create a constant to assign the native element property on the paragraph
+
+reference, so that we can perform the Dom manipulation.
+
+I'll say const content is equal to this dot para ref question mark dot native element.
+
+And then I'll apply a few styles on the paragraph by giving content dot style dot font style to italic.
+
+Now let's check the output and the font style is italic, so it is working fine.
+
+Just like font style.
+
+I'll apply font weight to 350 And setting the color to hash a f, double E, double E, and will display
+
+the paragraph reference in the console.
+
+Now let's check the output.
+
+The CSS properties are applied on the content, and we get the element reference in the console displaying
+
+the native element p.
+
+That is, paragraph tag is getting targeted here.
+
+Now the same thing.
+
+If we perform in the view child.
+
+Then if we check the output there is no change happening.
+
+And upon that we have got an error message which basically indicates that you cannot refer to the projected
+
+content with the view child decorator.
+
+So at content child is basically used within the component to get the reference of the project content
+
+elements and manipulate the content.
+
+11. IQ - @ContentChild Decorator: 
+Q. what's the difference between the view child and content child decorators.
+
+And we have already discussed that how the view child and content child is different.
+
+One is to refer the element.
+
+And the second is to deal with the content.
+
+Q. which lifecycle hook is commonly used with the content child and explain the reason.
+
+So the commonly used lifecycle hook is ng after content in it.
+
+It is important because it ensures that the content projected into the component is available and can be safely manipulated.
+
+This hook is called after the angular projects external content into the component.
+
+Basically, when the content is there, then only this hook is executed.
+
+That's why ng after content init hook is important when we are dealing with the content Child decorator.
+
+12. Property Decorators - Binding Properties With @HostBinding: 
+The @HostBinding decorator is used for binding the properties of an element or component or class with the help of custom directive.
+
+It works just like the normal property binding e.g. [value] = "initialValue", but the host binding allows binding of the property on the host element.
+
+Host element is the element on which we attach our component or directive.
+
+Let's understand by looking at an example.
+
+I am creating a custom directive by giving the command "ng g directive highlightElement --skip-test" as the directive
+
+name, skipping the test files here.
+
+So this creates a custom directive.
+
+As you can see, let me open the file.
+
+Mostly, the host binding decorator is used within the custom directives to apply CSS style properties
+
+or Dom related tasks on the element.
+
+The selector value will be passed on the hosted element like this, where we give the directive name
+
+on the division.
+
+In this case, let's bind a few properties with host binding, giving the host binding decorator.
+
+Now inside the parentheses we give the CSS properties.
+
+I'll give style, background color, and a reference name to refer to the property and will assign a
+
+hex value.
+
+Now in the app component template we already have a division and a heading.
+
+Let me give a paragraph and on the division I will give the custom directive name that is app highlight
+
+element.
+
+This is how we declare the host property binding and angular automatically checks host property bindings
+
+during change detection.
+
+So if a binding changes, it will update the host element of the directive.
+
+Let's check the output and we get the background color applied on the division.
+
+So this is what basically the host binding does in the real world scenarios.
+
+It is mostly used for styling directives or attribute manipulation.
+
+Third party integrations and animating the directives.
+
+If you want to add more properties, then we can define host binding multiple times.
+
+Let's add a text color property.
+
+I'll give the host binding decorator again and define the color property by giving style dot color.
+
+Then a reference and a color value that is hash one zero, one eight, two, zero and five.
+
+And if we check the output we can see the text color gets applied here in the code.
+
+You might also think that we haven't used the reference variables anywhere in the template, nor in
+
+the code.
+
+The reference variables are used when you want to assign the value to the properties explicitly.
+
+For example, let's assign the color values to background and text when the component initializes.
+
+I'll implement the on init interface and define the ng on init hook instead of constructor, and there
+
+I'll assign the values of the reference variables, setting the value for background color and then
+
+the text color.
+
+And I'll make the reference variables optional by giving the question mark.
+
+So if we check the output again it stays the same.
+
+The proper implementation of the host binding is seen with another decorator and that is the method
+
+decorator called host listener.
+
+With these two given together, we can add dynamism to the component properties.
+
+And that I'll show you in the very next lecture.
+
+13. Method Decorators - Binding Methods To Events With @HostListener: A method decorator is very similar to property decorator, but is used for the methods instead, as it allows us to decorate specific methods within the given component class.
+
+The best example of method decorator is the host listener.
+
+This decorator allows us to let angular know that when an event on the host happens, the decorated method should be called on that event.
+
+In short, with the host listener, we are binding the class method to an event of the host element.
+
+Let's see an example and understand how it works.
+
+I am continuing with the previous lectures.
+
+Example.
+
+We are using the host binding to apply the background and text color on the division.
+
+Now I will give the host listener and in the parentheses we have to specify the event.
+
+It can be any Dom event like click focus, key up, key down, blur, etc..
+
+For now, let's give a click event and it is mandatory to give a method after specifying the event.
+
+So let me give on toggle as the method name.
+
+This is just a name we have given.
+
+You can give any name in this case.
+
+So on toggle is a custom method name or basically an event we have created and that will be executed
+
+when the click event is triggered on the division.
+
+Let's define some logic to change the background and text color when we click on the division giving
+
+the if condition.
+
+Specifying that if this.bg color is equal to hash f2, double A4CF, then change the background color
+
+and text color.
+
+Else reset the properties back to the original colors.
+
+So with host listener we can add dynamism within the component class.
+
+And now if we check the output you can see the color is getting changed when I click on the element.
+
+So this is how the host listener is used along with the host binding to add dynamism on the component.
+
+Let's try one more example here.
+
+Declaring a property color array in which I'll give a few color code values.
+
+Then I'll create a private random color select method naming the method as set random color.
+
+Defining a constant in which I'll give the logic to get the random color from the array.
+
+I'll say const color pick is equal to math dot floor in the brackets, math dot Math.random and giving
+
+this dot color.
+
+Array dot length, which will give me a random number in the color pick constant.
+
+Now we need to ensure that the picked color is different from the current background color.
+
+So I will give an if condition that.
+
+If this.bg color is not equal to the color selected from the array.
+
+Then set the background to any color selected from the array.
+
+And let's keep the text color constant that is hash triple C, because even if we randomly select the
+
+text color right now, there are chances of uncertain color combinations which I want to avoid.
+
+Anyway, you can definitely perform selecting of random colors for text and background by implementing
+
+the same random color logic, but in that case the colors should be precisely selected by you after
+
+setting the static text color.
+
+There can be a situation where the picked color from the array and current background may match when
+
+we first click the element.
+
+So we need to give an else part, although it is not necessary, but still as a safeguard.
+
+In the else part, I'll just call the method again.
+
+That is this dot set random color.
+
+That's it.
+
+And we'll also set the set random color in the host listener.
+
+Now let's check the output.
+
+This is the initial colors which we set.
+
+Now I'll click on the element and the background color is getting randomly selected.
+
+So we can use the host listener to carry out actions based on various Dom events.
+
+And we will see some of the real world scenarios in the assignment practice lectures.
+
+14. Parameter Decorator: The parameter decorators are used to decorate the parameters, and they are mainly applied to a constructor
+
+parameter to inject or provide additional metadata resources inside the application, like a service file.
+
+For example, we can use the inject parameter decorator to inject or provide the service file when it is needed to perform some action in a particular component.
+
+This same concept goes for the rest of the parameter decorators.
+
+That is, they are passed inside the constructor as a parameter to inject some dependencies.
+
+In angular, the concept of injecting or providing services file like dependencies are known as dependency
+
+injection, and we will understand this concept in detail in a dedicated section.
+
+
+
+
+
+---------------------------------------------
+1. Pipes Introduction : In angular.
+
+The pipes are the template binding feature that allows some transformation on the data before displaying them.
+
+Let's understand it by looking at an example.
+
+I am defining a variable title and will pass a string message inside, and I'll display the string message
+
+inside the H1.
+
+Let me center align the text as well.
+
+You can see the string getting displayed.
+
+Now let's say you want to display the string in uppercase.
+
+So the first thing you will think of is applying the CSS rule to transform the text.
+
+But instead we are going to use the pipe expression for transforming this varied text.
+
+So if I give here the pipe and value as uppercase.
+
+And now if we check the output, you can see the string is converted into uppercase.
+
+Let's say you want the string in lowercase, then change the pipe to lowercase.
+
+There are many built in pipes provided by angular, which can be used to format the string date numbers,
+
+filter or sort the array, or even applying any other transformations on the data.
+
+And to apply a pipe expression, the pipe symbol is used.
+
+So in this case we have applied the lowercase pipe to the title property of the component.
+
+Let's see another example where we display the date.
+
+I'll define a variable show date of type date and the date object.
+
+This will give us the current date.
+
+And inside the template I'll give the variable name.
+
+Then using the built in date pipe expression with a valid format, I have used the uppercase M for month
+
+value.
+
+As in TypeScript, the lowercase m is used for minutes and uppercase for month values.
+
+Let's check the output and you can see the current date.
+
+You can also change the month format.
+
+Triple M for displaying three letter character month.
+
+And four M for displaying full character month names.
+
+You can also change the way of displaying the date.
+
+Also, you can apply more than one pipe for the template expression, like here.
+
+If I want the month name to display in uppercase, I can add the uppercase pipe and you can see the month name is in uppercase.
+
+But remember that the order of pipes is also considered, so whichever pipe is defined first will be executed first and then the rest.
+
+There are many use cases of pipes in angular apart from just altering the string formats, and we will
+
+see those in the upcoming lectures.
+
+2. Slice Pipe : In angular.
+
+The slice pipe is a built in pipe that allows you to extract or slice a portion of an array or string,
+
+and creates a new array containing that portion, which is in programming terms, is known as subset,
+
+that is, slice of the elements.
+
+Let's check an example.
+
+First we will apply the slice pipe on a string.
+
+So inside the template file I'll give the paragraph tag and a string.
+
+Giving the slice pipe.
+
+The slice pipe works the same just like the slice method in TypeScript.
+
+That is, it takes a starting position and the end position.
+
+So here if I give the start position as zero, that means the slice will begin from the first character,
+
+which is at the index position zero and the end position I'll set it to seven.
+
+This means starting from the zeroth index position.
+
+We want seven characters to be displayed.
+
+That is, the word angular will be the output.
+
+Let's check it.
+
+If I change the end position to 13, then starting from the zeroth index, it will consider 13 characters
+
+as you can see in the output.
+
+It also accepts negative values.
+
+If I give -11, then the character count starts from backwards till it reaches 11 characters, but considering
+
+the zeroth index position.
+
+And if I give only -11, then it displays the 11 characters from backwards.
+
+So this is the difference when given with a starting index position and without it.
+
+Let's try it with array as well.
+
+I am defining an array, naming it as slice array, which contains four items.
+
+Now instead of this string, I'll pass the array here and the slice pipe.
+
+I'll set the value as zero and three.
+
+Instead of giving the characters, it displays three items.
+
+So this is how the slice works with arrays.
+
+It retrieves the number of items as you can see in the output.
+
+If you want to retrieve a single element, then just specify the index position of that element.
+
+If I change it to minus two, then it will display the last two elements.
+
+So this is how the slice pipe works with the string and array.
+
+We will be using it often in forthcoming lectures and project assignments.
+
+3. Nuber Pipe: The built in number pipe is used to format numbers in specific ways.
+
+For example, applying decimal points.
+
+Let's check an example.
+
+I'll define a paragraph tag and inside I'll pass a number value.
+
+Let's say 110.
+
+Giving the number pipe.
+
+Let's convert this number into decimal.
+
+I'll give three here and then the decimal point, which means I want to display three digits before
+
+the decimal point.
+
+After the decimal point I want to display only one digit.
+
+So I'll give one here.
+
+And finally the maximum length let's say giving two.
+
+As you can see in the output it shows 110.0.
+
+So it followed the formatting which we specified.
+
+That is three digits before the decimal and one after the decimal.
+
+Let's display two digits after the decimal.
+
+I'll give two here.
+
+And now the output has changed according to the format that is two digits after the decimal.
+
+If I change it to three, there is no output displayed because we have set the maximum length limit
+
+of the digits to two only.
+
+Let me change the max limit to four.
+
+And now we have the updated value as per the format.
+
+Another useful thing you can do with the number pipe is to round up the values.
+
+Let me change the number to 110.66.
+
+Now let's say we want to round up value for this number.
+
+For example 110.7.
+
+So I will update the format after the decimal point.
+
+I want only one digit after decimal and max length will be of one as well.
+
+Let's check the output and you can see it is showing a round up figure that is 110.7.
+
+You can also apply this pipe on a variable.
+
+Let me define a variable pi with a value of pi.
+
+Now we want to display a roundup value of this variable.
+
+For example we want to display 3.14 in the output.
+
+So for that I'll give the format like this.
+
+First I'll give the variable instead of the number value.
+
+Then I'll change the number format to 1.2 hyphen two.
+
+That is, one digit before the decimal, two after the decimal and max limit of the number should be
+
+two after the decimal, and you can see the output.
+
+So this is how the number pipe is used.
+
+There are many practical implementations when it comes to formatting numbers, because in any application
+
+you will have numeric values like prices or other calculations to be displayed.
+
+And number pipe is really handy in such cases.
+
+
+4. JSON Pipe: The JSON pipe is a built in pipe that is used to display, or rather convert the given object literal
+
+into JSON formatted string.
+
+Let's check out its syntax with an example.
+
+I am creating an object named User Details which contains name, email.
+
+And address properties.
+
+I'll define the template here inside the template property of the component decorator.
+
+First we will display the object without JSON format.
+
+And then we will apply the JSON format on it.
+
+I will give the object name and the JSON pipe.
+
+So with this syntax you can apply the JSON string format to any object.
+
+Let's check the output.
+
+And now you can see that the object has been converted to the JSON string format.
+
+You can also apply different pipes to format the JSON string like I'll give here.
+
+Uppercase pipe.
+
+And this displays the JSON string in the title case.
+
+So with the help of JSON pipe you can convert any object to JSON string.
+
+It is very useful for debugging or displaying the raw data to the developer.
+
+But be careful not to overuse the JSON pipe in the production code, as in some cases you might end
+
+up exposing the sensitive data at the user's end.
+
+So it's better to use it for debugging and remove it at a later stage.
+----------------------------------------------------
+
+1. Create custom pipe: Till now we have seen some important ready to use built in pipes.
+
+Now we are going to learn how you can customize pipes by creating your own custom pipes.
+
+Custom pipes are created when we want to enhance the built in pipes transformation performed on the
+
+template data.
+
+We need custom pipes to execute and perform advanced transformations on the template data easily and
+
+effectively.
+
+And by advanced transformations I mean sorting or filtering operations on data or displaying the data
+
+in a paginated format.
+
+Power and exponent operation, etc..
+
+To create a custom pipe, we have to execute the following command inside the terminal.
+
+I'll give n g g.
+
+That is, generate pipe and the pipe name.
+
+And this creates two files pipe dot ts and pipe dot spects.
+
+We will use the pipe ts file for defining custom pipe.
+
+The spec ts file is used for executing the tests on the custom pipe, which we will see at a later stage
+
+when needed.
+
+So this is how the structure of the custom pipe is defined.
+
+We have the import statement which imports the pipe decorator and the pipe transform interface, which
+
+provides the transform method.
+
+As you can see, the at pipe decorator contains the name property having the custom pipe name, and
+
+the transform method takes the input value and a set of arguments as parameters, which at the end returns
+
+the transformed output.
+
+The transform method is the main method or you can say required method for defining any custom pipes.
+
+It takes at least one argument, which is the data that is going to be transformed.
+
+So let's define a custom pipe.
+
+As you can see, the name I have given to the pipe is append text.
+
+We are going to create a pipe which appends a text to the given string.
+
+Let me clear out the default statements from the transform method.
+
+I will declare two parameters of type string value and suffix well, and the return type of the transform
+
+method, I'll keep it as string.
+
+So here the value parameter is the input value that we want to transform, and the suffix val parameter
+
+is the string which we want to append with the input value.
+
+And instead of return null I will give return value plus suffix value.
+
+So we are just concatenating the input value parameter with the suffix val parameter and returning the
+
+result as string.
+
+Now in the template, I'll display the message inside the heading.
+
+I'll give a string value, then the custom pipe that is append text with another string value which
+
+I want to append.
+
+Let me align the text to center.
+
+And now let's check the output.
+
+And we have the desired result.
+
+So this is a very basic example which demonstrates the basic structure of creating a custom pipe.
+
+Remember, the main method for creating a custom pipe is the transform method, and with it you can
+
+perform any kind of transformations on the input value.
+
+2. Interview question : First question is what is the purpose of the pipe decorator?
+
+Now it contains the metadata that is, the additional information about the pipe and to register it
+
+with the angular framework.
+
+By default it takes a single argument which is the name of the pipe, but there are optional arguments
+
+which also can be defined.
+
+The second question is what is the role of the pipe transform interface?
+
+The pipe transform interface defines the transform method for a custom pipe to implement.
+
+This method contains the core logic of the pipe.
+
+It takes an input value and optional parameters or arguments, and a return statement which returns
+
+the transformed output value.
+
+So the pipe transform is an interface which ensures that a custom pipe is implemented correctly.
+
+3. Assignment 1 :In this assignment, we are creating a custom pipe which sorts the numbers in ascending or descending
+
+order.
+
+So let's begin.
+
+I'll open the terminal and will execute the command to create custom pipe.
+
+So I'll say ng generate pipe and giving the pipe name as sort numbers.
+
+Let's define the pipe.
+
+I'll open the pipe ts file.
+
+Now inside this the transform method I'll give two parameters as input values an array of numbers on
+
+which we will perform the sort operation, and the string literal type value sort order, which can
+
+be either ascending or descending.
+
+We are using these key values, that is ASC and DSC to perform the ascending or descending sorting.
+
+Note that the pipe sign is not the custom pipe or any built in pipe.
+
+Rather, it is the union type operator provided by the TypeScript, which means that the parameter sort
+
+order can have a value that is either ascending or descending.
+
+As this method takes an array of numbers, the sorted array will also be an array of numbers, so keeping
+
+the return type of the method as number array.
+
+Now let's define the logic for the pipe, which will be an if condition.
+
+I'll check if sort order is equal to ascending.
+
+I am using the strict equality operator here, and if it is, then simply return the sorted array.
+
+I'll give array dot sort and with the built in callback function of sort method, which is referred
+
+to as compare function, I'll give two parameters a and b, and we'll sort the array by giving a minus
+
+b syntax.
+
+So this returns the array in ascending order.
+
+In the else part.
+
+We will check for the descending order.
+
+I'll give return rr dot sort.
+
+Passing the parameters again.
+
+And this time I'll give B minus A to return descending order.
+
+And by this we have created the custom pipe for sorting.
+
+Now inside the app component TS file, I'll first import the sorting pipe, and then I'll define an
+
+array called numbers with some random values in it.
+
+Let's try to display this array inside the template.
+
+I'll open the HTML file and will give an H1 giving span here to style the array at a later stage and
+
+will display the numbers array and the array is getting displayed in the output.
+
+Now we have to initialize a property with the ascending order value to ensure that the array is sorted
+
+in the ascending order when the component is rendered.
+
+Otherwise, the array will be displayed in a random order.
+
+So I will give the property as sort order, which will be of type ascending or descending, and I will
+
+set the initial value as ascending.
+
+Next we need one more property of type boolean, which will be triggered for displaying the sorted array.
+
+I will create a boolean property show list and set it to false.
+
+Creating a method show sorting in which I will set the show list property to true.
+
+Now let's finish up the template below the heading.
+
+We need a button container which will contain the buttons for sorting the array.
+
+So let's define them.
+
+I'll define a button sort ascending and with the click event, I'll bind the sort order property and
+
+set its value to ascending and will also bind the method that is show sorting.
+
+So with this, we have passed a condition with the click event that if the value of sort order is ascending,
+
+we want ascending order to be displayed.
+
+Same thing for the descending button as well.
+
+I'll change the button text and sort order value.
+
+Next I'll give the if condition to display the ascending or descending order using the control flow
+
+if syntax that.
+
+If the show list is truthy, we display the array.
+
+I'll give the division and again an if condition in which we check for the sort order value based on
+
+the button clicked.
+
+So if it is ascending, we display the ascending order.
+
+I'll only give the heading, else if the sort order is descending, we display the descending order.
+
+Now to display the array we need to iterate over it.
+
+So first I'll give the ul tag and a for loop to iterate on the numbers array.
+
+I'll apply the sort numbers pipe on the array.
+
+The pipe name comes from the name property given inside the sort pipe.
+
+I'll also give the tag expression, and inside the alley I'll display the number and by this the template
+
+is ready.
+
+Let's check the output and we can see the respective buttons.
+
+Let's first display the ascending order.
+
+And here you go.
+
+We get the sorted array.
+
+Now let me click on the sort descending button.
+
+And yes the descending order array is displayed.
+
+So this is how we can create a custom pipe for sorting the array values.
+
+4. Assignment : In this assignment, we are creating a custom pipe which counts the total number of letters the string
+
+contains.
+
+So first I will create a custom pipe named letter count.
+
+Inside the pipe TS.
+
+We have the transform method.
+
+Let me define an input parameter of type string as.
+
+We need an input value which stores the string and the transform method type will be number because
+
+we need the transformed output as number count.
+
+So the transform method will convert the string into number that is count of letters.
+
+Next, we need a variable to track the number of letters in the input string.
+
+So I will give the count variable and initialize it with the value zero.
+
+And in the end we will return the count value.
+
+So let me give count in the return statement.
+
+Now, in order to count the number of letters, we need to iterate through the string, right?
+
+So I'll use the for loop, where I create a variable to iterate over each character of the input parameter
+
+value.
+
+To iterate over each character, we first need to check if the entered character is a letter, and for
+
+that we will give an if condition which checks that the entered character is a letter.
+
+I will write if the variable age is greater than or equal to lowercase a, and less than or equal to
+
+lowercase z, or greater than or equal to uppercase A, and less than or equal to uppercase Z.
+
+If these conditions are met, then increment the count variable.
+
+The purpose of this block is to check if the character is a letter, and increment the count if it is,
+
+and once we have checked that the character in the value string is a letter, we return the final value
+
+of count, which represents the total number of letters in the string.
+
+Another time saving and effective approach to achieve this is by using a regex pattern that is the regular
+
+Expression.
+
+All right, back to the code.
+
+Let's define the template now.
+
+Creating a container division.
+
+Giving a heading.
+
+Creating subdivision for input field.
+
+Setting the Ng model to get the string value and a span tag.
+
+Inside the components file, I'll set the string val variable to empty as it is for the user to enter.
+
+And in the template, I'll display the result inside the paragraph tag.
+
+So initially this is how the template looks.
+
+But after applying CSS it looks like this.
+
+Let's enter a string value and you can see it displays the total number of letters string contains.
+
+Also notice that the white spaces are not counted in the total.
+
+So this is how you can implement a letter count functionality using pipe.
+
+5. Pure Vs Impur Pipes: In angular pipes are a way to transform the data before displaying it, and a simple custom pipe takes
+
+some input data, applies some processing on it, and returns the transformed output data.
+
+Generally, there are two types of pipe.
+
+Pure and impure, and when dealing with a custom pipe, defining the pipe type becomes necessary in
+
+certain situations.
+
+Let's check a simple example where we create a custom pipe for incrementing the counter value.
+
+I will first create a custom pipe named increment count.
+
+And inside the pipe ts.
+
+Let's define the transform method.
+
+We need just a single input parameter.
+
+So I'll give the value parameter of type number and as the transformed output will be a number, I'll
+
+keep the method type as number as well.
+
+I want this pipe to display the counter value in the console.
+
+So I'll give a console message and we'll return the value.
+
+Inside the component's file.
+
+I will create a counter value variable initialized with zero.
+
+And a function to increment the counter.
+
+Let's define the template as well.
+
+I'll create a division.
+
+Defining a button inside and binding the increment function.
+
+Here a paragraph tag to display the output where I give the increment count pipe on the counter value
+
+variable.
+
+Let's check the output.
+
+I'll open the console and you can see when I increment the counter, the counter message gets updated
+
+in the console every time.
+
+Now this is how any pure pipe behaves.
+
+That is, it transforms the data whenever it detects the change in input value and by default, every
+
+pipe in angular is a pure pipe as it executes the pipe only when it detects a pure change in the input
+
+value.
+
+A pure change is just a simple and steady change in the input value, such as a string or number, or
+
+a boolean, or changes in object reference for array, function or object, etc..
+
+So a pure pipe processes inputs and returns values without any side effects.
+
+The impure pipe, on the other hand, transforms the data even if the input data has not changed.
+
+Let's make this pipe impure by specifying the pure property to false inside the pipe decorator.
+
+This property takes true or false.
+
+True indicates that the pipe is pure, which is a default behavior of all the pipes, and false means
+
+it is impure.
+
+Now that the pipe is impure.
+
+Let's check the difference in output.
+
+When I increment the counter, you can see that the console message is getting displayed twice for each
+
+counter increment as the pipe is impure.
+
+It is getting invoked on every change detection cycle.
+
+So when the value of counter changes, the impure pipe gets called twice, once for updating the view
+
+that is the output displayed on the template.
+
+And second, to check if the input value has changed.
+
+And that's why the console messages are displayed twice.
+
+The pure pipe used to get called only on the input value change, so using pure pipes ensures more optimized
+
+performance than the impure pipes.
+
+Well, this does not mean that impure pipes are not useful.
+
+Depending on the certain situations, implementing impure pipes is considered a better option and which
+
+I am going to discuss in the next lecture.
+
+
+
+
+6. impure Pipe: In the previous lecture, we saw how the pure pipes are different from the impure ones, and how defining
+
+the pure pipes is considered a better option.
+
+But also there are certain limitations when it comes to pure pipe, and in those cases, impure pipes
+
+are much needed.
+
+So let's create such a situation where defining the impure pipe is necessary to perform the code execution.
+
+I am creating a custom pipe called sum of numbers.
+
+And inside the transform method I will give an input value as a number array and the transform method
+
+of number type as the final output will be total of the numbers given in the array.
+
+So I have given the number type for the transform method.
+
+Now to sum all the values, we will use the for loop.
+
+I will create a variable sum initialized with the value zero.
+
+This variable will keep the track of the total sum of the array elements.
+
+Then inside the for loop, I will create a variable num to iterate over the array, which we will further
+
+add with the sum variable.
+
+So on each iteration, the current element of the array is assigned to the num variable, and that value
+
+will be added with the sum variable.
+
+And at the end we return the sum.
+
+Inside the components.
+
+I will define the array and inside the template I will display the sum of the array using the pipe.
+
+Now here is the twist.
+
+I will create a button update value with a function.
+
+Let me define the function in the components file.
+
+I will give array dot push five.
+
+The push method will push the value five to the array when clicked on the button, and that should change
+
+the total value, right?
+
+Let's check the output.
+
+You can see the total is six.
+
+Let me click on update value and you can see it is not updating.
+
+Why is it so?
+
+Because the pure pipe does not modify the input array.
+
+That's just how it is intended to work.
+
+
+
+--------------------------------------------------------
+
+1. Routing Introduction : Now we are starting with an advanced and one of the most important concepts in angular, and that is
+
+the routing.
+
+In angular routing refers to the process of navigating between different components of an application.
+
+When we want to navigate from one page to another page, or a component to another component in a single
+
+application, we make use of routing to achieve this.
+
+In short, routing is an essential tool to handle navigation in your application.
+
+So let's understand how the routing is added inside the angular application.
+
+Inside the project there is a file named app dot routes ts.
+
+This is the file where we define all the routes which are to be made available at the application level.
+
+Or we can say at the root level.
+
+The angular CLI takes care of creating and configuring this file automatically when a new application
+
+is created.
+
+So let's understand a few basic things.
+
+First, all the routing is carried out by the router service, which is responsible for navigating between
+
+components, changing the URL and activating the view tied to the URL.
+
+The Router service module provides a specific type for defining the routes.
+
+This routes type represents an array that holds the configuration for the application's routing system.
+
+Each item in this array is an object that defines a single route, specifying the path and the component
+
+that should be displayed when the route is activated.
+
+Now this is all for defining the routes.
+
+We need to configure the routes as well, and that is done within the app config App.config file.
+
+Inside this file, if we look at the providers array, there is a provider router function which is
+
+again provided by the router service.
+
+This function allows us to configure the routes specified within the entire application.
+
+So if we have created a separate routing file for a specific component, then we have to configure those
+
+routes within this function.
+
+What provider router function does is it takes the application's routes and configures the angular router
+
+to use the routes for navigation.
+
+These routes define which components to render for specific URL paths.
+
+So these were a few basics related to the routing mechanism in angular.
+
+From the next lecture we will see how to define routes and understand the routing flow.
+
+
+
  
