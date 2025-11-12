@@ -1,0 +1,82 @@
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+table {
+  width: 70%;
+  text-align: center;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 8px;
+  font-size: 1.2rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border: 1px solid #ddd;
+}
+
+
+
+
+/* --------Page Navigation --------------  */
+
+.product-grid {
+  display: grid;
+  width: 65%;
+  margin: 0 auto;
+  margin-top: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #333;
+}
+
+.product-card h2 {
+  margin-top: 0;
+  text-align: center;
+  height: 50px;
+  text-overflow: ellipsis;
+  padding-bottom: 10%;
+}
+
+.product-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.btn-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #0072c6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: dodgerblue;
+}
+button:disabled {
+  background-color: #9b9b9b;
+  cursor: not-allowed;
+}

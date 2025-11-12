@@ -1,1 +1,57 @@
-<p>pipes works!</p>
+<h1 style="text-align: center;">{{title | lowercase}}</h1>
+<p>{{strDate | date: 'dd-MM-yyy' }}</p>
+<p>{{strDate | date: 'dd-MMM-yyy' }}</p>
+<p>{{strDate | date: 'dd-MMMM-yyy' }}</p>
+<p>{{strDate | date: 'dd/MMM/yyy' }}</p>
+<p>{{strDate | date: 'dd/MMM/yyy' | uppercase}}</p>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Department</th>
+            <th>Salary</th>
+        </tr>
+        @if(employees.length > 0 ){
+        @for(emp of employees; track emp.id) {
+        <tr>
+            <td>{{emp.name | titlecase}}</td>
+            <td>{{emp.designation | appendText : emp.department }}</td>
+            <td>{{emp.department | slice:0:3 | uppercase}}</td>
+            <td>{{emp.salary | currency: 'INR':'symbol':'1.2-2':'en-IN' }}</td>
+        </tr>
+        }
+        } @else {
+        <tr>No Record Found.</tr>
+        }
+    </table>
+</div>
+
+<p>{{'Angular slice pipe' | slice: 0: 7}}</p>
+<p>{{'Angular slice pipe' | slice: 0: -7}}</p>
+<p>{{'Angular slice pipe' | slice: 0}}</p>
+<p>{{'Angular slice pipe' | slice: -7}}</p>
+
+
+<p>{{sliceArr | slice: -2}}</p>
+<p>{{sliceArr | slice: 2: 3}}</p>
+
+<div class="product-grid">
+    <div class="product-card">
+    @for(product of products | slice : startIndex : endIndex ; track product.imageUrl){
+    <h2>{{product.name}}</h2>
+    <img [src]="product.imageUrl" width="400px">
+    }
+    </div>
+    <div class="btn-container">
+        <button type="button" (click)="previousPage()" [disabled]="startIndex == 0">Previous</button>
+        <button type="button" (click)="nextPage()" [disabled]="endIndex >= products.length">Next</button>
+    </div>
+</div>
+
+<!-- <p>{{110.676767 | number: '3.1-2'}}</p>
+<p>{{110.276767 | number: '3.1-1'}}</p> -->
+
+<h1>Given Array <span>[{{numbers | shortNumbers : sortOrder}}]</span></h1>
+<button (click)="showSorting()">Sort {{sortOrder | uppercase}}</button>
