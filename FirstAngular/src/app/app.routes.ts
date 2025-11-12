@@ -18,8 +18,10 @@ import { NgContainerAndNgTemplateComponent } from './ng-container-and-ng-templat
 import { NgTemplateOutletComponent } from './ng-template-outlet/ng-template-outlet.component';
 import { PortfolioBuilderComponent } from './portfolio-builder/portfolio-builder.component';
 import { PropertyDecoratorComponent } from './property-decorator/property-decorator.component';
+import { PipesComponent } from './pipes/pipes.component';
 
 export const routes: Routes = [
+  { path: 'pipes', component: PipesComponent },
   { path: 'propertyDecorator', component: PropertyDecoratorComponent },
   { path: 'protfolioBuilder', component: PortfolioBuilderComponent },
   { path: 'templateOutlet', component: NgTemplateOutletComponent },
